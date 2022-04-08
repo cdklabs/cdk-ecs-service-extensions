@@ -123,7 +123,7 @@
         "package": "io.github.cdklabs.cdkecsserviceextensions",
         "maven": {
           "groupId": "io.github.cdklabs",
-          "artifactId": "cdkecsserviceextensions"
+          "artifactId": "cdk-ecs-service-extensions"
         }
       },
       "python": {

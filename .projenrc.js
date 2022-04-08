@@ -38,7 +38,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   publishToMaven: {
     mavenGroupId: 'io.github.cdklabs',
     javaPackage: 'io.github.cdklabs.cdkecsserviceextensions',
-    mavenArtifactId: 'cdkecsserviceextensions',
+    mavenArtifactId: 'cdk-ecs-service-extensions',
     mavenEndpoint: 'https://s01.oss.sonatype.org',
   },
 

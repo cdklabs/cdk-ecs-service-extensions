@@ -16,4 +16,6 @@ cp ${script_dir}/../../lambda/queue/queue_backlog_calculator.py $PWD
 cp ${script_dir}/test_index.py $PWD
 cp ${script_dir}/Dockerfile $PWD
 
-docker build .
+pip3 install boto3
+python3 test_index.py
+#docker build .
