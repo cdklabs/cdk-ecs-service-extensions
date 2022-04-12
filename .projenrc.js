@@ -16,6 +16,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/cdklabs/cdk-ecs-service-extensions.git',
   stability: 'experimental',
   majorVersion: 2,
+  prerelease: 'alpha',
 
   deps,
   peerDeps: deps,
