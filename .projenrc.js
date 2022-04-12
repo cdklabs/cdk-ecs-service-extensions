@@ -46,6 +46,14 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['cdklabs-automation'],
     secret: 'GITHUB_TOKEN',
   },
+  releaseWorkflowSetupSteps: [{
+    name: 'Set up Docker Buildx',
+    id: 'buildx',
+    uses: 'docker/setup-buildx-action@v1',
+    with: {
+      install: true,
+    },
+  }],
 
   autoApproveUpgrades: true,
 });
