@@ -1,27 +1,27 @@
 const { awscdk } = require('projen');
 
 const deps = [
-  'aws-cdk-lib@2.19.0',
-  'constructs@^10.0.0',
+  'aws-cdk-lib',
+  'constructs',
 ];
 
 const project = new awscdk.AwsCdkConstructLibrary({
-  packageName: 'cdk-ecs-service-extensions',
+  packageName: '@aws-cdk-containers/ecs-service-extensions',
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
   authorOrganization: true,
-  cdkVersionPinning: '2.19.0',
-  cdkVersion: '2.19.0',
+  cdkVersion: '2.1.0',
   defaultReleaseBranch: 'main',
   name: 'cdklabs/cdk-ecs-service-extensions',
   repositoryUrl: 'https://github.com/cdklabs/cdk-ecs-service-extensions.git',
   stability: 'experimental',
+  majorVersion: 2,
 
   deps,
   peerDeps: deps,
   devDeps: [
     '@types/jest',
-    'aws-cdk-lib@2.19.0',
+    'aws-cdk-lib',
     'jest',
   ],
 
@@ -46,14 +46,14 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['cdklabs-automation'],
     secret: 'GITHUB_TOKEN',
   },
-  releaseWorkflowSetupSteps: [{
-    name: 'Set up Docker Buildx',
-    id: 'buildx',
-    uses: 'docker/setup-buildx-action@v1',
-    with: {
-      install: true,
-    },
-  }],
+  // releaseWorkflowSetupSteps: [{
+  //   name: 'Set up Docker Buildx',
+  //   id: 'buildx',
+  //   uses: 'docker/setup-buildx-action@v1',
+  //   with: {
+  //     install: true,
+  //   },
+  // }],
 
   autoApproveUpgrades: true,
 });
