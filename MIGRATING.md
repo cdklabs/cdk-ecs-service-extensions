@@ -9,7 +9,17 @@ to continue to receive features and bug fixes.
 There are no big API changes between v1 and v2. However, there may be
 some small modifications necessary to get your application ready for
 `@aws-cdk-containers/ecs-service-extensions` v2.
+## Step 1: Migrate your CDK application or library to AWS CDK v2
 
+See the steps [here](https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html).
+
+## Step 2: Update dependencies in your package.json
+
+{
+  "dependencies": {
+    "@aws-cdk-containers/ecs-service-extensions": "^2.0.0",
+  }
+}
 ## Type Changes
 
 - `Environment.cluster` changes from type `ecs.Cluster` to `ecs.ICluster`.
