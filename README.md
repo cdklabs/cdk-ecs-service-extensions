@@ -15,7 +15,17 @@ TypeScript and JavaScript and named `cdk-ecs-service-extensions` for other JSII 
 languages.
 
 ```ts nofixture
-import * as ecs_extensions from '@aws-cdk-containers/ecs-service-extensions';
+import {
+  AppMeshExtension,
+  CloudwatchAgentExtension,
+  Container,
+  Environment,
+  FireLensExtension,
+  HttpLoadBalancerExtension,
+  Service,
+  ServiceDescription,
+  XRayExtension,
+} from 'cdk-ecs-service-extensions';
 ```
 
 If you are using the `@aws-cdk-containers/ecs-service-extensions` v1 and need to migrate to
