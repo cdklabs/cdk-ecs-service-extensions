@@ -10,21 +10,18 @@
 <!--END STABILITY BANNER-->
 
 This library provides a high level, extensible pattern for constructing services
-deployed using Amazon ECS.
+deployed using Amazon ECS. It is named `@aws-cdk-containers/ecs-service-extensions` for
+TypeScript and JavaScript and named `cdk-ecs-service-extensions` for other JSII target
+languages.
 
 ```ts nofixture
-import {
-  AppMeshExtension,
-  CloudwatchAgentExtension,
-  Container,
-  Environment,
-  FireLensExtension,
-  HttpLoadBalancerExtension,
-  Service,
-  ServiceDescription,
-  XRayExtension,
-} from 'cdk-ecs-service-extensions';
+import * as ecs_extensions from '@aws-cdk-containers/ecs-service-extensions';
 ```
+
+If you are using the `@aws-cdk-containers/ecs-service-extensions` v1 and need to migrate to
+v2, see the [Migration Guide](https://github.com/cdklabs/cdk-ecs-service-extensions/blob/main/MIGRATING.md).
+
+## `Service` construct
 
 The `Service` construct provided by this module can be extended with optional `ServiceExtension` classes that add supplemental ECS features including:
 
