@@ -10,9 +10,7 @@
 <!--END STABILITY BANNER-->
 
 This library provides a high level, extensible pattern for constructing services
-deployed using Amazon ECS. It is named `@aws-cdk-containers/ecs-service-extensions` for
-TypeScript and JavaScript and named `cdk-ecs-service-extensions` for other JSII target
-languages.
+deployed using Amazon ECS.
 
 ```ts nofixture
 import {
