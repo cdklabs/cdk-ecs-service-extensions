@@ -23,8 +23,13 @@ import {
   Service,
   ServiceDescription,
   XRayExtension,
-} from 'cdk-ecs-service-extensions';
+} from '@aws-cdk-containers/ecs-service-extensions';
 ```
+
+If you are using the `@aws-cdk-containers/ecs-service-extensions` v1 and need to migrate to
+v2, see the [Migration Guide](https://github.com/cdklabs/cdk-ecs-service-extensions/blob/main/MIGRATING.md).
+
+## `Service` construct
 
 The `Service` construct provided by this module can be extended with optional `ServiceExtension` classes that add supplemental ECS features including:
 
