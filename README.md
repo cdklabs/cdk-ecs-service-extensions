@@ -25,7 +25,7 @@ import {
   Service,
   ServiceDescription,
   XRayExtension,
-} from 'cdk-ecs-service-extensions';
+} from '@aws-cdk-containers/ecs-service-extensions';
 ```
 
 If you are using the `@aws-cdk-containers/ecs-service-extensions` v1 and need to migrate to
