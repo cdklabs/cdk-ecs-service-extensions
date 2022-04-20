@@ -1,16 +1,11 @@
 const { awscdk } = require('projen');
 
-const deps = [
-  'aws-cdk-lib',
-  'constructs',
-];
-
 const project = new awscdk.AwsCdkConstructLibrary({
   packageName: '@aws-cdk-containers/ecs-service-extensions',
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
   authorOrganization: true,
-  cdkVersion: '2.1.0',
+  cdkVersion: '2.8.0',
   defaultReleaseBranch: 'main',
   name: 'cdklabs/cdk-ecs-service-extensions',
   repositoryUrl: 'https://github.com/cdklabs/cdk-ecs-service-extensions.git',
@@ -18,11 +13,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
   majorVersion: 2,
   prerelease: 'alpha',
 
-  deps,
-  peerDeps: deps,
+  peerDeps: [
+    'aws-cdk-lib',
+    'constructs',
+  ],
   devDeps: [
     '@types/jest',
-    'aws-cdk-lib',
     'jest',
   ],
 
