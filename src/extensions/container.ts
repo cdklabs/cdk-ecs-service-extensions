@@ -43,6 +43,22 @@ export interface ContainerExtensionProps {
   };
 
   /**
+   * The environment files to pass to the container.
+   *
+   * @see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html
+   *
+   * @default - No environment files.
+   */
+  readonly environmentFiles?: ecs.EnvironmentFile[];
+
+  /**
+   * The secret environment variables to pass to the container.
+   *
+   * @default - No secret environment variables.
+   */
+  readonly secrets?: { [key: string]: ecs.Secret };
+
+  /**
    * The log group into which application container logs should be routed.
    *
    * @default - A log group is automatically created for you if the `ECS_SERVICE_EXTENSIONS_ENABLE_DEFAULT_LOG_DRIVER` feature flag is set.
@@ -100,6 +116,8 @@ export class Container extends ServiceExtension {
       cpu: Number(this.props.cpu),
       memoryLimitMiB: Number(this.props.memoryMiB),
       environment: this.props.environment,
+      environmentFiles: this.props.environmentFiles,
+      secrets: this.props.secrets,
     } as ecs.ContainerDefinitionOptions;
 
     // Let other extensions mutate the container definition. This is
