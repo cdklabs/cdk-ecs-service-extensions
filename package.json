@@ -1,5 +1,6 @@
 {
   "name": "@aws-cdk-containers/ecs-service-extensions",
+  "description": "The CDK Construct Library that helps you build ECS services using simple extensions",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdklabs/cdk-ecs-service-extensions.git"
