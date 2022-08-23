@@ -876,7 +876,9 @@ const containerExtensionProps: ContainerExtensionProps = { ... }
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ContainerExtensionProps.property.memoryMiB">memoryMiB</a></code> | <code>number</code> | How much memory in megabytes the container requires. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ContainerExtensionProps.property.trafficPort">trafficPort</a></code> | <code>number</code> | What port the image listen for traffic on. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ContainerExtensionProps.property.environment">environment</a></code> | <code>{[ key: string ]: string}</code> | Environment variables to pass into the container. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.ContainerExtensionProps.property.environmentFiles">environmentFiles</a></code> | <code>aws-cdk-lib.aws_ecs.EnvironmentFile[]</code> | The environment files to pass to the container. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ContainerExtensionProps.property.logGroup">logGroup</a></code> | <code>aws-cdk-lib.aws_logs.ILogGroup</code> | The log group into which application container logs should be routed. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.ContainerExtensionProps.property.secrets">secrets</a></code> | <code>{[ key: string ]: aws-cdk-lib.aws_ecs.Secret}</code> | The secret environment variables to pass to the container. |
 
 ---
 
@@ -941,6 +943,21 @@ Environment variables to pass into the container.
 
 ---
 
+##### `environmentFiles`<sup>Optional</sup> <a name="environmentFiles" id="@aws-cdk-containers/ecs-service-extensions.ContainerExtensionProps.property.environmentFiles"></a>
+
+```typescript
+public readonly environmentFiles: EnvironmentFile[];
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.EnvironmentFile[]
+- *Default:* No environment files.
+
+The environment files to pass to the container.
+
+> [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html)
+
+---
+
 ##### `logGroup`<sup>Optional</sup> <a name="logGroup" id="@aws-cdk-containers/ecs-service-extensions.ContainerExtensionProps.property.logGroup"></a>
 
 ```typescript
@@ -951,6 +968,19 @@ public readonly logGroup: ILogGroup;
 - *Default:* A log group is automatically created for you if the `ECS_SERVICE_EXTENSIONS_ENABLE_DEFAULT_LOG_DRIVER` feature flag is set.
 
 The log group into which application container logs should be routed.
+
+---
+
+##### `secrets`<sup>Optional</sup> <a name="secrets" id="@aws-cdk-containers/ecs-service-extensions.ContainerExtensionProps.property.secrets"></a>
+
+```typescript
+public readonly secrets: {[ key: string ]: Secret};
+```
+
+- *Type:* {[ key: string ]: aws-cdk-lib.aws_ecs.Secret}
+- *Default:* No secret environment variables.
+
+The secret environment variables to pass to the container.
 
 ---
 
