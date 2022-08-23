@@ -5,7 +5,6 @@ import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as awslogs from 'aws-cdk-lib/aws-logs';
-import * as secrets from 'aws-cdk-lib/aws-secretsmanager';
 import * as cxapi from 'aws-cdk-lib/cx-api';
 import { Container, Environment, EnvironmentCapacityType, FireLensExtension, Service, ServiceDescription } from '../lib';
 
@@ -32,17 +31,12 @@ describe('container', () => {
     const taskRole = new iam.Role(stack, 'CustomTaskRole', {
       assumedBy: new iam.ServicePrincipal('ecs-tasks.amazonaws.com'),
     });
-    const secret = new secrets.Secret(stack, 'secret', {
-      secretName: 'secret',
-    });
+
     serviceDescription.add(new Container({
       cpu: 256,
       memoryMiB: 512,
       trafficPort: 80,
       image: ecs.ContainerImage.fromRegistry('nathanpeck/name'),
-      secrets: {
-        'my-secret': ecs.Secret.fromSecretsManager(secret),
-      },
     }));
 
     new Service(stack, 'my-service', {
@@ -73,14 +67,6 @@ describe('container', () => {
               HardLimit: 1024000,
               Name: 'nofile',
               SoftLimit: 1024000,
-            },
-          ],
-          Secrets: [
-            {
-              Name: 'my-secret',
-              ValueFrom: {
-                Ref: 'secret4DA88516',
-              },
             },
           ],
         },
