@@ -34,13 +34,6 @@ export interface AliasedPortProps {
    * @default same as containerPort.
    */
   readonly aliasTrafficPort?: number;
-
-  /**
-   * The Log Driver to use for service connect traffic logging.
-   *
-   * @default no logging.
-   */
-  readonly logDriver?: ecs.LogDriver;
 }
 
 export class AliasedPortExtension extends ServiceExtension {
@@ -49,13 +42,11 @@ export class AliasedPortExtension extends ServiceExtension {
   protected discoveryName?: string;
   protected namespace?: cloudmap.INamespace;
   protected appProtocol?: ecs.AppProtocol;
-  protected logDriver?: ecs.LogDriver;
 
   constructor(props: AliasedPortProps) {
     super('aliasedPort');
 
     this.aliasPort = props.aliasTrafficPort;
-    this.logDriver = props.logDriver;
     this.aliasDnsName = props.alias;
     this.aliasPort = props.aliasTrafficPort;
 
@@ -71,7 +62,6 @@ export class AliasedPortExtension extends ServiceExtension {
     if (!this.parentService.cluster.defaultCloudMapNamespace) {
       this.parentService.environment.addDefaultCloudMapNamespace({
         name: this.parentService.environment.id,
-        type: cloudmap.NamespaceType.HTTP,
       });
     }
     this.namespace = this.parentService.environment.cluster.defaultCloudMapNamespace;

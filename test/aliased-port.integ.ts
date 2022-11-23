@@ -1,11 +1,13 @@
 import { App, Stack } from 'aws-cdk-lib';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { AliasedPortExtension, Container, Environment, Service, ServiceDescription } from '../lib';
+import { AliasedPortExtension, Container, Environment, EnvironmentCapacityType, Service, ServiceDescription } from '../lib';
 
 const app = new App();
 const stack = new Stack(app, 'aws-ecs-integ');
 
-const environment = new Environment(stack, 'production');
+const environment = new Environment(stack, 'production', {
+  capacityType: EnvironmentCapacityType.FARGATE,
+});
 
 const aliasedPortServiceDescription = new ServiceDescription();
 
@@ -21,13 +23,16 @@ aliasedPortServiceDescription.add(new Container({
 
 aliasedPortServiceDescription.add(new AliasedPortExtension({
   alias: 'name',
-  containerPort: 80,
+  aliasTrafficPort: 1000,
+  protocol: ecs.AppProtocol.GRPC,
+  discoveryName: 'intermediate',
 }));
 
-new Service(stack, 'ServiceConnect', {
+const svc = new Service(stack, 'ServiceConnect', {
   environment: environment,
   serviceDescription: aliasedPortServiceDescription,
-  autoScaleTaskCount: {
-    maxTaskCount: 2,
-  },
+  desiredCount: 1,
 });
+
+const ns = environment.cluster.defaultCloudMapNamespace!;
+svc.ecsService.node.addDependency(ns);

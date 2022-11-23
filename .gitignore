@@ -48,3 +48,12 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
+test/.tmp
+test/aliased-port.integ.snapshot/asset.*
+test/aliased-port.integ.snapshot/**/asset.*
+test/aliased-port.integ.snapshot/cdk.out
+test/aliased-port.integ.snapshot/**/cdk.out
+test/aliased-port.integ.snapshot/manifest.json
+test/aliased-port.integ.snapshot/**/manifest.json
+test/aliased-port.integ.snapshot/tree.json
+test/aliased-port.integ.snapshot/**/tree.json
