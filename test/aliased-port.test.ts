@@ -14,31 +14,73 @@ describe('aliased port', () => {
   });
 
   test('aliased port extension throws error when no container extension exists', () => {
+
+    serviceDescription.add(new AliasedPortExtension({
+      alias: 'name',
+    }));
+
     expect(() => {
-      serviceDescription.add(new AliasedPortExtension({
-        alias: 'name',
-      }));
-    }).toThrow('Aliased Port extension requires a Container Extension to already exist.');
+      new Service(stack, 'my-service', {
+        environment,
+        serviceDescription,
+      });
+    }).toThrow('Service \'my-service\' must have a Container extension');
   });
 
-  test('service connect cannot be enabled with two different namespaces.', () => {
+  test('when adding all options', () => {
     serviceDescription.add(new Container({
       cpu: 256,
       memoryMiB: 512,
       trafficPort: 80,
       image: ecs.ContainerImage.fromRegistry('nathanpeck/name'),
     }));
+
     serviceDescription.add(new AliasedPortExtension({
-      alias: 'direct', 
-    });
-    serviceDescription.add(new AliasedPortExtension({
-      alias: 'indirect',
-      portMapping: {
-        containerPort: 8080,
-        name: 'indirect', 
-        appProtocol: ecs.AppProtocol.GRPC,
-      },
+      alias: 'name',
+      aliasTrafficPort: 1000,
+      discoveryName: 'test',
+      protocol: ecs.AppProtocol.GRPC,
     }));
+
+    new Service(stack, 'my-service', {
+      environment,
+      serviceDescription,
+    });
+
+    // THEN
+    Template.fromStack(stack).hasResourceProperties('AWS::ECS::TaskDefinition', {
+      ContainerDefinitions: [
+        {
+          PortMappings: [
+            {
+              Name: 'name',
+              Protocol: 'tcp',
+              AppProtocol: 'grpc',
+              ContainerPort: 80,
+            },
+          ],
+        },
+      ],
+    });
+
+    Template.fromStack(stack).hasResourceProperties('AWS::ECS::Service', {
+      ServiceConnectConfiguration: {
+        Enabled: true,
+        Namespace: 'production',
+        Services: [
+          {
+            PortName: 'name',
+            DiscoveryName: 'test',
+            ClientAliases: [
+              {
+                Port: 1000,
+                DnsName: 'name',
+              },
+            ],
+          },
+        ],
+      },
+    });
   });
 
   test('when adding an aliased port with minimal config', () => {

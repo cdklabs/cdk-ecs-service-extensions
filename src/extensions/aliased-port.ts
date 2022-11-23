@@ -41,12 +41,6 @@ export interface AliasedPortProps {
    * @default no logging.
    */
   readonly logDriver?: ecs.LogDriver;
-
-  /**
-   * The new port mapping to create on the container. This is used when exposing multiple ports via Service Connect.
-   * This property will cause a new port mapping to be injected into the container and advertised via service connect.
-   */
-  readonly portMapping?: ecs.PortMapping;
 }
 
 export class AliasedPortExtension extends ServiceExtension {
@@ -56,8 +50,6 @@ export class AliasedPortExtension extends ServiceExtension {
   protected namespace?: cloudmap.INamespace;
   protected appProtocol?: ecs.AppProtocol;
   protected logDriver?: ecs.LogDriver;
-
-  protected newPortMapping?: ecs.PortMapping;
 
   constructor(props: AliasedPortProps) {
     super('aliasedPort');
@@ -69,27 +61,12 @@ export class AliasedPortExtension extends ServiceExtension {
 
     this.discoveryName = props.discoveryName;
     this.appProtocol = props.protocol;
-
-    this.newPortMapping = props.portMapping;
-  }
-
-  private validatePortMappingForAliasedPortExtension(pm: ecs.PortMapping | undefined) {
-    if (!pm) {
-      return;
-    }
-    if (!pm.name) {
-      throw new Error('Port mapping must have a name.');
-    }
-    if (pm.protocol && pm.protocol !== ecs.Protocol.TCP) {
-      throw new Error('Port mapping must use TCP');
-    }
   }
 
   public prehook(service: Service, scope: Construct) {
     this.parentService = service;
     this.scope = scope;
 
-    if 
     // If there isn't a default cloudmap namespace on the cluster, create a private HTTP namespace for SC.
     if (!this.parentService.cluster.defaultCloudMapNamespace) {
       this.parentService.environment.addDefaultCloudMapNamespace({
@@ -103,23 +80,14 @@ export class AliasedPortExtension extends ServiceExtension {
   public addHooks(): void {
     const containerextension = this.parentService.serviceDescription.get('service-container') as Container;
     if (!containerextension) {
-      throw new Error('Aliased Port extension requires a Container Extension to already exist.');
+      throw new Error('Aliased Port extension requires a Container extension to already exist.');
     }
-    this.validatePortMappingForAliasedPortExtension(this.newPortMapping);
 
-    if (this.newPortMapping && this.newPortMapping.name) {
-      containerextension.addContainerMutatingHook(new AliasedPortMutatingHook({
-        portMappingName: this.newPortMapping.name,
-        trafficPort: this.newPortMapping.containerPort,
-        protocol: this.newPortMapping.appProtocol,
-      }));
-    } else {
-      containerextension.addContainerMutatingHook(new AliasedPortMutatingHook({
-        portMappingName: this.aliasDnsName,
-        trafficPort: containerextension.trafficPort,
-        protocol: this.appProtocol,
-      }));
-    }
+    containerextension.addContainerMutatingHook(new AliasedPortMutatingHook({
+      portMappingName: this.aliasDnsName,
+      trafficPort: containerextension.trafficPort,
+      protocol: this.appProtocol,
+    }));
   }
 
   public modifyServiceProps(props: ServiceBuild): ServiceBuild {
@@ -136,8 +104,8 @@ export class AliasedPortExtension extends ServiceExtension {
       throw new Error('Cannot infer port: container has no traffic port and aliasPort was not specified.');
     }
 
-    const portMappingName = this.newPortMapping ? this.newPortMapping.name! : this.aliasDnsName;
-    const aliasPort = this.aliasPort ? this.aliasPort : this.newPortMapping ? this.newPortMapping.containerPort : containerextension.trafficPort;
+    const portMappingName = this.aliasDnsName;
+    const aliasPort = this.aliasPort ? this.aliasPort : containerextension.trafficPort;
     // If there is already a service connect config, we need to modify the existing properties instead of creating new ones.
     // Push a new service to the list of services.
     let services: ecs.ServiceConnectService[] = [];
@@ -165,14 +133,14 @@ export class AliasedPortExtension extends ServiceExtension {
         },
       };
     }
-    const scConfig = {
-      ...props.serviceConnectConfiguration,
-      services: services,
-    };
+
     return {
       ...props,
 
-      serviceConnectConfiguration: scConfig,
+      serviceConnectConfiguration: {
+        ...props.serviceConnectConfiguration,
+        services: services,
+      },
     };
   }
 }
