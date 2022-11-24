@@ -39,7 +39,6 @@ export interface AliasedPortProps {
 export class AliasedPortExtension extends ServiceExtension {
   protected aliasDnsName: string;
   protected aliasPort?: number;
-  protected discoveryName?: string;
   protected namespace?: cloudmap.INamespace;
   protected appProtocol?: ecs.AppProtocol;
 
@@ -50,7 +49,6 @@ export class AliasedPortExtension extends ServiceExtension {
     this.aliasDnsName = props.alias;
     this.aliasPort = props.aliasTrafficPort;
 
-    this.discoveryName = props.discoveryName;
     this.appProtocol = props.protocol;
   }
 
@@ -103,14 +101,9 @@ export class AliasedPortExtension extends ServiceExtension {
       services = props.serviceConnectConfiguration.services ? props.serviceConnectConfiguration.services : [];
     }
     services.push({
-      port: portMappingName,
-      discoveryName: this.discoveryName,
-      aliases: [
-        {
-          port: aliasPort,
-          dnsName: this.aliasDnsName,
-        },
-      ],
+      portMappingName,
+      port: aliasPort,
+      dnsName: this.aliasDnsName,
     });
     if (!props.serviceConnectConfiguration) {
       return {
