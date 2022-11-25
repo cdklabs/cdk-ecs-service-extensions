@@ -60,7 +60,7 @@ export interface ServiceBuild {
    *
    * @default - No Service Connect configured.
    */
-  readonly serviceConnectConfiguration?: ecs.ServiceConnectConfiguration;
+  readonly serviceConnectConfiguration?: ecs.ServiceConnectProps;
 
   /**
    * How long the healthcheck can fail during initial task startup before

@@ -1,5 +1,4 @@
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import * as cloudmap from 'aws-cdk-lib/aws-servicediscovery';
 import { Construct } from 'constructs';
 import { Service } from '../service';
 import { Container } from './container';
@@ -34,8 +33,8 @@ export interface AliasedPortProps {
 export class AliasedPortExtension extends ServiceExtension {
   protected aliasDnsName: string;
   protected aliasPort?: number;
-  protected namespace?: cloudmap.INamespace;
   protected appProtocol?: ecs.AppProtocol;
+  protected namespace?: string;
 
   constructor(props: AliasedPortProps) {
     super('aliasedPort');
@@ -55,7 +54,7 @@ export class AliasedPortExtension extends ServiceExtension {
         name: this.parentService.environment.id,
       });
     }
-    this.namespace = this.parentService.environment.cluster.defaultCloudMapNamespace;
+    this.namespace = this.parentService.environment.cluster.defaultCloudMapNamespace?.namespaceName;
   }
 
   public addHooks(): void {
@@ -96,13 +95,15 @@ export class AliasedPortExtension extends ServiceExtension {
       port: this.aliasPort || containerextension.trafficPort,
       dnsName: this.aliasDnsName,
     });
+    if (!this.parentService.cluster.defaultCloudMapNamespace) {
+      throw new Error('Cluster must have a default CloudMap namespace.');
+    }
     if (!props.serviceConnectConfiguration) {
       return {
         ...props,
 
         serviceConnectConfiguration: {
-          enabled: true,
-          namespace: this.namespace || this.parentService.cluster.defaultCloudMapNamespace,
+          namespace: this.parentService.cluster.defaultCloudMapNamespace.namespaceName,
           services,
         },
       };
