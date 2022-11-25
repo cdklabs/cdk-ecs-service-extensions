@@ -131,7 +131,7 @@ export interface AliasedPortMutatingHookProps {
   /**
    * The protocol which this port mapping expects to receive.
    *
-   * @default: none
+   * @default - none
    */
   readonly protocol?: ecs.AppProtocol;
 }
