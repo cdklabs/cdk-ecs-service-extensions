@@ -21,19 +21,14 @@ export interface AliasedPortProps {
    *
    * @default none
    */
-  readonly protocol?: ecs.AppProtocol;
-
-  /**
-   * An optional intermediate discovery name to register this service to within the namespace.
-   */
-  readonly discoveryName?: string;
+  readonly appProtocol?: ecs.AppProtocol;
 
   /**
    * The traffic port for clients to use to connect to the DNS alias.
    *
    * @default same as containerPort.
    */
-  readonly aliasTrafficPort?: number;
+  readonly aliasPort?: number;
 }
 
 export class AliasedPortExtension extends ServiceExtension {
@@ -45,11 +40,9 @@ export class AliasedPortExtension extends ServiceExtension {
   constructor(props: AliasedPortProps) {
     super('aliasedPort');
 
-    this.aliasPort = props.aliasTrafficPort;
+    this.aliasPort = props.aliasPort;
     this.aliasDnsName = props.alias;
-    this.aliasPort = props.aliasTrafficPort;
-
-    this.appProtocol = props.protocol;
+    this.appProtocol = props.appProtocol;
   }
 
   public prehook(service: Service, scope: Construct) {
@@ -73,7 +66,7 @@ export class AliasedPortExtension extends ServiceExtension {
 
     containerextension.addContainerMutatingHook(new AliasedPortMutatingHook({
       portMappingName: this.aliasDnsName,
-      trafficPort: containerextension.trafficPort,
+      aliasPort: containerextension.trafficPort,
       protocol: this.appProtocol,
     }));
   }
@@ -92,8 +85,6 @@ export class AliasedPortExtension extends ServiceExtension {
       throw new Error('Cannot infer port: container has no traffic port and aliasPort was not specified.');
     }
 
-    const portMappingName = this.aliasDnsName;
-    const aliasPort = this.aliasPort ? this.aliasPort : containerextension.trafficPort;
     // If there is already a service connect config, we need to modify the existing properties instead of creating new ones.
     // Push a new service to the list of services.
     let services: ecs.ServiceConnectService[] = [];
@@ -101,8 +92,8 @@ export class AliasedPortExtension extends ServiceExtension {
       services = props.serviceConnectConfiguration.services ? props.serviceConnectConfiguration.services : [];
     }
     services.push({
-      portMappingName,
-      port: aliasPort,
+      portMappingName: this.aliasDnsName,
+      port: this.aliasPort || containerextension.trafficPort,
       dnsName: this.aliasDnsName,
     });
     if (!props.serviceConnectConfiguration) {
@@ -112,7 +103,7 @@ export class AliasedPortExtension extends ServiceExtension {
         serviceConnectConfiguration: {
           enabled: true,
           namespace: this.namespace || this.parentService.cluster.defaultCloudMapNamespace,
-          services: services,
+          services,
         },
       };
     }
@@ -122,7 +113,7 @@ export class AliasedPortExtension extends ServiceExtension {
 
       serviceConnectConfiguration: {
         ...props.serviceConnectConfiguration,
-        services: services,
+        services,
       },
     };
   }
@@ -136,7 +127,7 @@ export interface AliasedPortMutatingHookProps {
   /**
    * The port on the container which receives traffic. This is the same as the `containerPort` property of port mapping.
    */
-  readonly trafficPort: number;
+  readonly aliasPort: number;
   /**
    * The protocol which this port mapping expects to receive.
    *
@@ -152,12 +143,12 @@ export interface AliasedPortMutatingHookProps {
 export class AliasedPortMutatingHook extends ContainerMutatingHook {
   private portMappingName: string;
   private portMappingProtocol?: ecs.AppProtocol;
-  private trafficPort: number;
+  private aliasPort: number;
 
   constructor(props: AliasedPortMutatingHookProps) {
     super();
     this.portMappingName = props.portMappingName;
-    this.trafficPort = props.trafficPort;
+    this.aliasPort = props.aliasPort;
     this.portMappingProtocol = props.protocol;
   }
 
@@ -167,7 +158,7 @@ export class AliasedPortMutatingHook extends ContainerMutatingHook {
 
       portMappings: [
         {
-          containerPort: this.trafficPort,
+          containerPort: this.aliasPort,
           name: this.portMappingName,
           appProtocol: this.portMappingProtocol,
         },

@@ -514,7 +514,6 @@
          "Port": 1000
         }
        ],
-       "DiscoveryName": "intermediate",
        "PortName": "name"
       }
      ]

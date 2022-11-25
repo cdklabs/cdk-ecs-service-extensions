@@ -23,9 +23,8 @@ aliasedPortServiceDescription.add(new Container({
 
 aliasedPortServiceDescription.add(new AliasedPortExtension({
   alias: 'name',
-  aliasTrafficPort: 1000,
-  protocol: ecs.AppProtocol.GRPC,
-  discoveryName: 'intermediate',
+  aliasPort: 1000,
+  appProtocol: ecs.AppProtocol.GRPC,
 }));
 
 const svc = new Service(stack, 'ServiceConnect', {

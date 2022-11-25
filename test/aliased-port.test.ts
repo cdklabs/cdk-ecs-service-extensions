@@ -37,8 +37,8 @@ describe('aliased port', () => {
 
     serviceDescription.add(new AliasedPortExtension({
       alias: 'name',
-      aliasTrafficPort: 1000,
-      protocol: ecs.AppProtocol.grpc,
+      aliasPort: 1000,
+      appProtocol: ecs.AppProtocol.grpc,
     }));
 
     new Service(stack, 'my-service', {
