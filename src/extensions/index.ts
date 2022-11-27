@@ -8,3 +8,4 @@ export * from './xray';
 export * from './assign-public-ip';
 export * from './queue/queue';
 export * from './injecter';
+export * from './aliased-port';

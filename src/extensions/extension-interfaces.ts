@@ -56,6 +56,13 @@ export interface ServiceBuild {
   readonly cloudMapOptions?: ecs.CloudMapOptions;
 
   /**
+   * Configuration for service connect for this service.
+   *
+   * @default - No Service Connect configured.
+   */
+  readonly serviceConnectConfiguration?: ecs.ServiceConnectProps;
+
+  /**
    * How long the healthcheck can fail during initial task startup before
    * the task is considered unhealthy. This is used to give the task more
    * time to start passing healthchecks.

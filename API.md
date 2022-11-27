@@ -670,6 +670,127 @@ The underlying ECS service that was created.
 
 ## Structs <a name="Structs" id="Structs"></a>
 
+### AliasedPortMutatingHookProps <a name="AliasedPortMutatingHookProps" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHookProps"></a>
+
+#### Initializer <a name="Initializer" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHookProps.Initializer"></a>
+
+```typescript
+import { AliasedPortMutatingHookProps } from '@aws-cdk-containers/ecs-service-extensions'
+
+const aliasedPortMutatingHookProps: AliasedPortMutatingHookProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHookProps.property.aliasPort">aliasPort</a></code> | <code>number</code> | The port on the container which receives traffic. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHookProps.property.portMappingName">portMappingName</a></code> | <code>string</code> | The name by which to refer to this port mapping. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHookProps.property.protocol">protocol</a></code> | <code>aws-cdk-lib.aws_ecs.AppProtocol</code> | The protocol which this port mapping expects to receive. |
+
+---
+
+##### `aliasPort`<sup>Required</sup> <a name="aliasPort" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHookProps.property.aliasPort"></a>
+
+```typescript
+public readonly aliasPort: number;
+```
+
+- *Type:* number
+
+The port on the container which receives traffic.
+
+This is the same as the `containerPort` property of port mapping.
+
+---
+
+##### `portMappingName`<sup>Required</sup> <a name="portMappingName" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHookProps.property.portMappingName"></a>
+
+```typescript
+public readonly portMappingName: string;
+```
+
+- *Type:* string
+
+The name by which to refer to this port mapping.
+
+---
+
+##### `protocol`<sup>Optional</sup> <a name="protocol" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHookProps.property.protocol"></a>
+
+```typescript
+public readonly protocol: AppProtocol;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.AppProtocol
+- *Default:* none
+
+The protocol which this port mapping expects to receive.
+
+---
+
+### AliasedPortProps <a name="AliasedPortProps" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortProps"></a>
+
+AliasedPortProps defines the properties of an aliased port extension.
+
+#### Initializer <a name="Initializer" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortProps.Initializer"></a>
+
+```typescript
+import { AliasedPortProps } from '@aws-cdk-containers/ecs-service-extensions'
+
+const aliasedPortProps: AliasedPortProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortProps.property.alias">alias</a></code> | <code>string</code> | The DNS alias to advertise for downstream clients. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortProps.property.aliasPort">aliasPort</a></code> | <code>number</code> | The traffic port for clients to use to connect to the DNS alias. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortProps.property.appProtocol">appProtocol</a></code> | <code>aws-cdk-lib.aws_ecs.AppProtocol</code> | The protocol to use over the specified port. |
+
+---
+
+##### `alias`<sup>Required</sup> <a name="alias" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortProps.property.alias"></a>
+
+```typescript
+public readonly alias: string;
+```
+
+- *Type:* string
+
+The DNS alias to advertise for downstream clients.
+
+---
+
+##### `aliasPort`<sup>Optional</sup> <a name="aliasPort" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortProps.property.aliasPort"></a>
+
+```typescript
+public readonly aliasPort: number;
+```
+
+- *Type:* number
+- *Default:* same as containerPort.
+
+The traffic port for clients to use to connect to the DNS alias.
+
+---
+
+##### `appProtocol`<sup>Optional</sup> <a name="appProtocol" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortProps.property.appProtocol"></a>
+
+```typescript
+public readonly appProtocol: AppProtocol;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.AppProtocol
+- *Default:* none
+
+The protocol to use over the specified port.
+
+May be one of HTTP, HTTP2, or GRPC.
+
+---
+
 ### AssignPublicIpDnsOptions <a name="AssignPublicIpDnsOptions" id="@aws-cdk-containers/ecs-service-extensions.AssignPublicIpDnsOptions"></a>
 
 #### Initializer <a name="Initializer" id="@aws-cdk-containers/ecs-service-extensions.AssignPublicIpDnsOptions.Initializer"></a>
@@ -1540,6 +1661,7 @@ const serviceBuild: ServiceBuild = { ... }
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.healthCheckGracePeriod">healthCheckGracePeriod</a></code> | <code>aws-cdk-lib.Duration</code> | How long the healthcheck can fail during initial task startup before the task is considered unhealthy. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.maxHealthyPercent">maxHealthyPercent</a></code> | <code>number</code> | Maximum percentage of tasks that can be launched. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.minHealthyPercent">minHealthyPercent</a></code> | <code>number</code> | Minimum healthy task percentage. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.serviceConnectConfiguration">serviceConnectConfiguration</a></code> | <code>aws-cdk-lib.aws_ecs.ServiceConnectProps</code> | Configuration for service connect for this service. |
 
 ---
 
@@ -1647,6 +1769,19 @@ public readonly minHealthyPercent: number;
 - *Default:* 100
 
 Minimum healthy task percentage.
+
+---
+
+##### `serviceConnectConfiguration`<sup>Optional</sup> <a name="serviceConnectConfiguration" id="@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.serviceConnectConfiguration"></a>
+
+```typescript
+public readonly serviceConnectConfiguration: ServiceConnectProps;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.ServiceConnectProps
+- *Default:* No Service Connect configured.
+
+Configuration for service connect for this service.
 
 ---
 
@@ -1848,6 +1983,288 @@ If not provided, the default `eventsQueue` will subscribe to the given topic.
 ---
 
 ## Classes <a name="Classes" id="Classes"></a>
+
+### AliasedPortExtension <a name="AliasedPortExtension" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension"></a>
+
+#### Initializers <a name="Initializers" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.Initializer"></a>
+
+```typescript
+import { AliasedPortExtension } from '@aws-cdk-containers/ecs-service-extensions'
+
+new AliasedPortExtension(props: AliasedPortProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.Initializer.parameter.props">props</a></code> | <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortProps">AliasedPortProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortProps">AliasedPortProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.addContainerMutatingHook">addContainerMutatingHook</a></code> | This hook allows another service extension to register a mutating hook for changing the primary container of this extension. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.addHooks">addHooks</a></code> | A hook that allows the extension to add hooks to other extensions that are registered. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.connectToService">connectToService</a></code> | This hook allows the extension to establish a connection to extensions from another service. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.modifyServiceProps">modifyServiceProps</a></code> | Prior to launching the task definition as a service, this hook is called on each extension to give it a chance to mutate the properties of the service to be created. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.modifyTaskDefinitionProps">modifyTaskDefinitionProps</a></code> | This is a hook which allows extensions to modify the settings of the task definition prior to it being created. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.prehook">prehook</a></code> | A hook that is called for each extension ahead of time to allow for any initial setup, such as creating resources in advance. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.resolveContainerDependencies">resolveContainerDependencies</a></code> | Once all containers are added to the task definition, this hook is called for each extension to give it a chance to resolve its dependency graph so that its container starts in the right order based on the other extensions that were enabled. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.useService">useService</a></code> | When this hook is implemented by extension, it allows the extension to use the service which has been created. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.useTaskDefinition">useTaskDefinition</a></code> | Once the task definition is created, this hook is called for each extension to give it a chance to add containers to the task definition, change the task definition's role to add permissions, etc. |
+
+---
+
+##### `addContainerMutatingHook` <a name="addContainerMutatingHook" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.addContainerMutatingHook"></a>
+
+```typescript
+public addContainerMutatingHook(hook: ContainerMutatingHook): void
+```
+
+This hook allows another service extension to register a mutating hook for changing the primary container of this extension.
+
+This is primarily used
+for the application extension. For example, the Firelens extension wants to
+be able to modify the settings of the application container to
+route logs through Firelens.
+
+###### `hook`<sup>Required</sup> <a name="hook" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.addContainerMutatingHook.parameter.hook"></a>
+
+- *Type:* <a href="#@aws-cdk-containers/ecs-service-extensions.ContainerMutatingHook">ContainerMutatingHook</a>
+
+---
+
+##### `addHooks` <a name="addHooks" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.addHooks"></a>
+
+```typescript
+public addHooks(): void
+```
+
+A hook that allows the extension to add hooks to other extensions that are registered.
+
+##### `connectToService` <a name="connectToService" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.connectToService"></a>
+
+```typescript
+public connectToService(service: Service, connectToProps?: ConnectToProps): void
+```
+
+This hook allows the extension to establish a connection to extensions from another service.
+
+Usually used for things like
+allowing one service to talk to the load balancer or service mesh
+proxy for another service.
+
+###### `service`<sup>Required</sup> <a name="service" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.connectToService.parameter.service"></a>
+
+- *Type:* <a href="#@aws-cdk-containers/ecs-service-extensions.Service">Service</a>
+
+The other service to connect to.
+
+---
+
+###### `connectToProps`<sup>Optional</sup> <a name="connectToProps" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.connectToService.parameter.connectToProps"></a>
+
+- *Type:* <a href="#@aws-cdk-containers/ecs-service-extensions.ConnectToProps">ConnectToProps</a>
+
+---
+
+##### `modifyServiceProps` <a name="modifyServiceProps" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.modifyServiceProps"></a>
+
+```typescript
+public modifyServiceProps(props: ServiceBuild): ServiceBuild
+```
+
+Prior to launching the task definition as a service, this hook is called on each extension to give it a chance to mutate the properties of the service to be created.
+
+###### `props`<sup>Required</sup> <a name="props" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.modifyServiceProps.parameter.props"></a>
+
+- *Type:* <a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild">ServiceBuild</a>
+
+---
+
+##### `modifyTaskDefinitionProps` <a name="modifyTaskDefinitionProps" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.modifyTaskDefinitionProps"></a>
+
+```typescript
+public modifyTaskDefinitionProps(props: TaskDefinitionProps): TaskDefinitionProps
+```
+
+This is a hook which allows extensions to modify the settings of the task definition prior to it being created.
+
+For example, the App Mesh
+extension needs to configure an Envoy proxy in the task definition,
+or the Application extension wants to set the overall resource for
+the task.
+
+###### `props`<sup>Required</sup> <a name="props" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.modifyTaskDefinitionProps.parameter.props"></a>
+
+- *Type:* aws-cdk-lib.aws_ecs.TaskDefinitionProps
+
+Properties of the task definition to be created.
+
+---
+
+##### `prehook` <a name="prehook" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.prehook"></a>
+
+```typescript
+public prehook(service: Service, scope: Construct): void
+```
+
+A hook that is called for each extension ahead of time to allow for any initial setup, such as creating resources in advance.
+
+###### `service`<sup>Required</sup> <a name="service" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.prehook.parameter.service"></a>
+
+- *Type:* <a href="#@aws-cdk-containers/ecs-service-extensions.Service">Service</a>
+
+---
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.prehook.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `resolveContainerDependencies` <a name="resolveContainerDependencies" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.resolveContainerDependencies"></a>
+
+```typescript
+public resolveContainerDependencies(): void
+```
+
+Once all containers are added to the task definition, this hook is called for each extension to give it a chance to resolve its dependency graph so that its container starts in the right order based on the other extensions that were enabled.
+
+##### `useService` <a name="useService" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.useService"></a>
+
+```typescript
+public useService(service: Ec2Service | FargateService): void
+```
+
+When this hook is implemented by extension, it allows the extension to use the service which has been created.
+
+It is generally used to
+create any final resources which might depend on the service itself.
+
+###### `service`<sup>Required</sup> <a name="service" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.useService.parameter.service"></a>
+
+- *Type:* aws-cdk-lib.aws_ecs.Ec2Service | aws-cdk-lib.aws_ecs.FargateService
+
+The generated service.
+
+---
+
+##### `useTaskDefinition` <a name="useTaskDefinition" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.useTaskDefinition"></a>
+
+```typescript
+public useTaskDefinition(taskDefinition: TaskDefinition): void
+```
+
+Once the task definition is created, this hook is called for each extension to give it a chance to add containers to the task definition, change the task definition's role to add permissions, etc.
+
+###### `taskDefinition`<sup>Required</sup> <a name="taskDefinition" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.useTaskDefinition.parameter.taskDefinition"></a>
+
+- *Type:* aws-cdk-lib.aws_ecs.TaskDefinition
+
+The created task definition to add containers to.
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.property.name">name</a></code> | <code>string</code> | The name of the extension. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.property.container">container</a></code> | <code>aws-cdk-lib.aws_ecs.ContainerDefinition</code> | The container for this extension. |
+
+---
+
+##### `name`<sup>Required</sup> <a name="name" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+The name of the extension.
+
+---
+
+##### `container`<sup>Optional</sup> <a name="container" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.property.container"></a>
+
+```typescript
+public readonly container: ContainerDefinition;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.ContainerDefinition
+
+The container for this extension.
+
+Most extensions have a container, but not
+every extension is required to have a container. Some extensions may just
+modify the properties of the service, or create external resources
+connected to the service.
+
+---
+
+
+### AliasedPortMutatingHook <a name="AliasedPortMutatingHook" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHook"></a>
+
+This hook modifies the application container's settings so that its primary port mapping has a name.
+
+#### Initializers <a name="Initializers" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHook.Initializer"></a>
+
+```typescript
+import { AliasedPortMutatingHook } from '@aws-cdk-containers/ecs-service-extensions'
+
+new AliasedPortMutatingHook(props: AliasedPortMutatingHookProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHook.Initializer.parameter.props">props</a></code> | <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHookProps">AliasedPortMutatingHookProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHook.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHookProps">AliasedPortMutatingHookProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHook.mutateContainerDefinition">mutateContainerDefinition</a></code> | This is a hook for modifying the container definition of any upstream containers. |
+
+---
+
+##### `mutateContainerDefinition` <a name="mutateContainerDefinition" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHook.mutateContainerDefinition"></a>
+
+```typescript
+public mutateContainerDefinition(props: ContainerDefinitionOptions): ContainerDefinitionOptions
+```
+
+This is a hook for modifying the container definition of any upstream containers.
+
+This is primarily used for the main application container.
+For example, the Firelens extension wants to be able to modify the logging
+settings of the application container.
+
+###### `props`<sup>Required</sup> <a name="props" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortMutatingHook.mutateContainerDefinition.parameter.props"></a>
+
+- *Type:* aws-cdk-lib.aws_ecs.ContainerDefinitionOptions
+
+---
+
+
+
 
 ### AppMeshExtension <a name="AppMeshExtension" id="@aws-cdk-containers/ecs-service-extensions.AppMeshExtension"></a>
 
