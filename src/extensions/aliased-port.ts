@@ -18,20 +18,20 @@ export interface AliasedPortProps {
    *
    * May be one of HTTP, HTTP2, or GRPC.
    *
-   * @default none
+   * @default - none
    */
   readonly appProtocol?: ecs.AppProtocol;
 
   /**
    * The traffic port for clients to use to connect to the DNS alias.
    *
-   * @default same as containerPort.
+   * @default - same as containerPort.
    */
   readonly aliasPort?: number;
 }
 
 export class AliasedPortExtension extends ServiceExtension {
-  protected aliasDnsName: string;
+  protected alias: string;
   protected aliasPort?: number;
   protected appProtocol?: ecs.AppProtocol;
   protected namespace?: string;
@@ -40,7 +40,7 @@ export class AliasedPortExtension extends ServiceExtension {
     super('aliasedPort');
 
     this.aliasPort = props.aliasPort;
-    this.aliasDnsName = props.alias;
+    this.alias = props.alias;
     this.appProtocol = props.appProtocol;
   }
 
@@ -64,7 +64,7 @@ export class AliasedPortExtension extends ServiceExtension {
     }
 
     containerextension.addContainerMutatingHook(new AliasedPortMutatingHook({
-      portMappingName: this.aliasDnsName,
+      portMappingName: this.alias,
       aliasPort: containerextension.trafficPort,
       protocol: this.appProtocol,
     }));
@@ -91,9 +91,9 @@ export class AliasedPortExtension extends ServiceExtension {
       services = props.serviceConnectConfiguration.services ? props.serviceConnectConfiguration.services : [];
     }
     services.push({
-      portMappingName: this.aliasDnsName,
+      portMappingName: this.alias,
       port: this.aliasPort || containerextension.trafficPort,
-      dnsName: this.aliasDnsName,
+      dnsName: this.alias,
     });
     if (!this.parentService.cluster.defaultCloudMapNamespace) {
       throw new Error('Cluster must have a default CloudMap namespace.');
