@@ -154,10 +154,12 @@ export class Container extends ServiceExtension {
     }
     this.container = taskDefinition.addContainer('app', containerProps);
 
-    // Create a port mapping for the container
-    this.container.addPortMappings({
-      containerPort: this.trafficPort,
-    });
+    // Create a port mapping for the container if not already created by another extension.
+    if (!this.container.findPortMapping(this.trafficPort, ecs.Protocol.TCP)) {
+      this.container.addPortMappings({
+        containerPort: this.trafficPort,
+      });
+    }
 
     // Raise the ulimits for this main application container
     // so that it can handle more concurrent requests

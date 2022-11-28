@@ -5,7 +5,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
   authorOrganization: true,
-  cdkVersion: '2.8.0',
+  cdkVersion: '2.52.0',
   defaultReleaseBranch: 'main',
   description: 'The CDK Construct Library that helps you build ECS services using simple extensions',
   name: 'cdklabs/cdk-ecs-service-extensions',

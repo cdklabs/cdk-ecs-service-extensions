@@ -130,6 +130,78 @@
         }
       ]
     },
+    "integ:aliased-port:assert": {
+      "name": "integ:aliased-port:assert",
+      "description": "assert the snapshot of integration test 'aliased-port'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/aliased-port.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'aliased-port'. Run 'projen integ:aliased-port:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/aliased-port.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/.tmp/aliased-port.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/aliased-port.integ.snapshot/ test/.tmp/aliased-port.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:aliased-port:deploy": {
+      "name": "integ:aliased-port:deploy",
+      "description": "deploy integration test 'aliased-port' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/.tmp/aliased-port.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/aliased-port.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/.tmp/aliased-port.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/aliased-port.integ.snapshot"
+        },
+        {
+          "exec": "mv test/.tmp/aliased-port.integ/deploy.cdk.out test/aliased-port.integ.snapshot"
+        },
+        {
+          "spawn": "integ:aliased-port:destroy"
+        }
+      ]
+    },
+    "integ:aliased-port:destroy": {
+      "name": "integ:aliased-port:destroy",
+      "description": "destroy integration test 'aliased-port'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/aliased-port.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:aliased-port:snapshot": {
+      "name": "integ:aliased-port:snapshot",
+      "description": "update snapshot for integration test \"aliased-port\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/aliased-port.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/aliased-port.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:aliased-port:watch": {
+      "name": "integ:aliased-port:watch",
+      "description": "watch integration test 'aliased-port' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/aliased-port.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/.tmp/aliased-port.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:snapshot-all": {
+      "name": "integ:snapshot-all",
+      "description": "update snapshot for all integration tests",
+      "steps": [
+        {
+          "spawn": "integ:aliased-port:snapshot"
+        }
+      ]
+    },
     "package": {
       "name": "package",
       "description": "Creates the distribution package",
@@ -241,10 +313,14 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --all --updateSnapshot"
+          "exec": "jest --passWithNoTests --updateSnapshot",
+          "receiveArgs": true
         },
         {
           "spawn": "eslint"
+        },
+        {
+          "spawn": "integ:aliased-port:assert"
         }
       ]
     },
