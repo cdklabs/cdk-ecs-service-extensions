@@ -27,11 +27,8 @@ aliasedPortServiceDescription.add(new AliasedPortExtension({
   appProtocol: ecs.AppProtocol.grpc,
 }));
 
-const svc = new Service(stack, 'ServiceConnect', {
+new Service(stack, 'ServiceConnect', {
   environment: environment,
   serviceDescription: aliasedPortServiceDescription,
   desiredCount: 1,
 });
-
-const ns = environment.cluster.defaultCloudMapNamespace!;
-svc.ecsService.node.addDependency(ns);

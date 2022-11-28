@@ -22,5 +22,11 @@ dist
 tsconfig.tsbuildinfo
 /.eslintrc.json
 !.jsii
-test/.tmp
 test/aliased-port.integ.snapshot
+test/all-service-addons.integ.snapshot
+test/assign-public-ip.integ.snapshot
+test/custom-service-extension.integ.snapshot
+test/imported-environment.integ.snapshot
+test/multiple-environments.integ.snapshot
+test/.tmp
+test/publish-subscribe.integ.snapshot
