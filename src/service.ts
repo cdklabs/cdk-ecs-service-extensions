@@ -298,6 +298,11 @@ export class Service extends Construct {
       throw new Error(`Unknown capacity type for service ${this.id}`);
     }
 
+    // Enable service connect if requested and it has not been enabled by an extension.
+    if (props.enableServiceConnect && !serviceProps.serviceConnectConfiguration) {
+      this.enableServiceConnect();
+    }
+
     // Create the auto scaling target and configure target tracking policies after the service is created
     if (props.autoScaleTaskCount) {
       this.scalableTaskCount = this.ecsService.autoScaleTaskCount({
@@ -381,5 +386,19 @@ export class Service extends Construct {
    */
   public enableAutoScalingPolicy() {
     this.autoScalingPoliciesEnabled = true;
+  }
+
+  /**
+   * This method allows a service to opt in to ECS Service Connect as a client.
+   * If this method is not called, the service will not be able to reach other
+   * Service Connect enabled services via their terse DNS aliases.
+   */
+  public enableServiceConnect() {
+    if (!this.environment.cluster.defaultCloudMapNamespace) {
+      throw new Error('Environment must have a default CloudMap namespace to enable Service Connect.');
+    }
+    this.ecsService.enableServiceConnect({
+      namespace: this.environment.cluster.defaultCloudMapNamespace.namespaceName,
+    });
   }
 }
