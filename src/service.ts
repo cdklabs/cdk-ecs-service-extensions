@@ -55,6 +55,13 @@ export interface ServiceProps {
    * @default none
    */
   readonly autoScaleTaskCount?: AutoScalingOptions;
+
+  /**
+   * Whether to opt this service in to Service Connect as a client.
+   *
+   * @default - true if an AliasedPortExtension was added to the service description, otherwise false
+   */
+  readonly enableServiceConnect?: boolean;
 }
 
 export interface AutoScalingOptions {
