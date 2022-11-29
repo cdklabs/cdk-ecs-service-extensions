@@ -426,6 +426,7 @@ new Service(scope: Construct, id: string, props: ServiceProps)
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.addURL">addURL</a></code> | This method adds a new URL for the service. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.connectTo">connectTo</a></code> | Tell extensions from one service to connect to extensions from another sevice if they have implemented a hook for it. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.enableAutoScalingPolicy">enableAutoScalingPolicy</a></code> | This helper method is used to set the `autoScalingPoliciesEnabled` attribute whenever an auto scaling policy is configured for the service. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.enableServiceConnect">enableServiceConnect</a></code> | This method allows a service to opt in to ECS Service Connect as a client. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.getURL">getURL</a></code> | Retrieve a URL for the service. |
 
 ---
@@ -493,6 +494,17 @@ public enableAutoScalingPolicy(): void
 ```
 
 This helper method is used to set the `autoScalingPoliciesEnabled` attribute whenever an auto scaling policy is configured for the service.
+
+##### `enableServiceConnect` <a name="enableServiceConnect" id="@aws-cdk-containers/ecs-service-extensions.Service.enableServiceConnect"></a>
+
+```typescript
+public enableServiceConnect(): void
+```
+
+This method allows a service to opt in to ECS Service Connect as a client.
+
+If this method is not called, the service will not be able to reach other
+Service Connect enabled services via their terse DNS aliases.
 
 ##### `getURL` <a name="getURL" id="@aws-cdk-containers/ecs-service-extensions.Service.getURL"></a>
 
