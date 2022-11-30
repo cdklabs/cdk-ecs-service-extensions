@@ -400,5 +400,6 @@ export class Service extends Construct {
     this.ecsService.enableServiceConnect({
       namespace: this.environment.cluster.defaultCloudMapNamespace.namespaceName,
     });
+    this.ecsService.node.addDependency(this.environment.cluster.defaultCloudMapNamespace);
   }
 }

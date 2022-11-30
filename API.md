@@ -2206,8 +2206,6 @@ create any final resources which might depend on the service itself.
 
 - *Type:* aws-cdk-lib.aws_ecs.Ec2Service | aws-cdk-lib.aws_ecs.FargateService
 
-The generated service.
-
 ---
 
 ##### `useTaskDefinition` <a name="useTaskDefinition" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.useTaskDefinition"></a>

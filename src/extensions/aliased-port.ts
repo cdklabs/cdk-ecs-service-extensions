@@ -1,4 +1,5 @@
 import * as ecs from 'aws-cdk-lib/aws-ecs';
+import * as cloudmap from 'aws-cdk-lib/aws-servicediscovery';
 import { Construct } from 'constructs';
 import { Service } from '../service';
 import { Container } from './container';
@@ -47,7 +48,7 @@ export class AliasedPortExtension extends ServiceExtension {
   protected alias: string;
   protected aliasPort?: number;
   protected appProtocol?: ecs.AppProtocol;
-  protected namespace?: string;
+  protected namespace?: cloudmap.INamespace;
 
   constructor(props: AliasedPortProps) {
     super('aliasedPort');
@@ -62,12 +63,12 @@ export class AliasedPortExtension extends ServiceExtension {
     this.scope = scope;
 
     // If there isn't a default cloudmap namespace on the cluster, create a private HTTP namespace for SC.
-    if (!this.parentService.cluster.defaultCloudMapNamespace) {
+    if (!this.parentService.environment.cluster.defaultCloudMapNamespace) {
       this.parentService.environment.addDefaultCloudMapNamespace({
         name: this.parentService.environment.id,
       });
     }
-    this.namespace = this.parentService.environment.cluster.defaultCloudMapNamespace?.namespaceName;
+    this.namespace = this.parentService.environment.cluster.defaultCloudMapNamespace as cloudmap.INamespace;
   }
 
   public addHooks(): void {
@@ -84,7 +85,7 @@ export class AliasedPortExtension extends ServiceExtension {
   }
 
   public modifyServiceProps(props: ServiceBuild): ServiceBuild {
-    if (props.serviceConnectConfiguration && props.serviceConnectConfiguration.namespace !== this.namespace) {
+    if (props.serviceConnectConfiguration && props.serviceConnectConfiguration.namespace !== this.namespace?.namespaceName) {
       throw new Error('Service connect cannot be enabled with two different namespaces.');
     }
 
@@ -130,6 +131,13 @@ export class AliasedPortExtension extends ServiceExtension {
         services,
       },
     };
+  }
+
+  public useService(service: ecs.Ec2Service | ecs.FargateService): void {
+    if (!this.namespace) {
+      throw new Error('Environment must have a default Cloudmap namespace to enable Service Connect.');
+    }
+    service.node.addDependency(this.namespace);
   }
 }
 
