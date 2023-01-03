@@ -72,7 +72,7 @@ export class HttpLoadBalancerExtension extends ServiceExtension {
       }
       this.parentService.scalableTaskCount.scaleOnRequestCount(`${this.parentService.id}-target-request-count-${this.requestsPerTarget}`, {
         requestsPerTarget: this.requestsPerTarget,
-        targetGroup,
+        targetGroup: this.parentService.targetGroup || targetGroup,
       });
       this.parentService.enableAutoScalingPolicy();
     }

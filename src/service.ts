@@ -1,5 +1,6 @@
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
+import { ApplicationTargetGroup } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
 import { IEnvironment } from './environment';
@@ -127,6 +128,11 @@ export class Service extends Construct {
    * The scalable attribute representing task count.
    */
   public readonly scalableTaskCount?: ecs.ScalableTaskCount;
+
+  /**
+   * The application target group.
+   */
+  public targetGroup?: ApplicationTargetGroup;
 
   /**
    * The flag to track if auto scaling policies have been configured
