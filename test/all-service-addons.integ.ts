@@ -1,7 +1,7 @@
 import { App, Stack } from 'aws-cdk-lib';
 import { Mesh } from 'aws-cdk-lib/aws-appmesh';
 import { ContainerImage } from 'aws-cdk-lib/aws-ecs';
-import { AppMeshExtension, CloudwatchAgentExtension, Container, Environment, FireLensExtension, HttpLoadBalancerExtension, ScaleOnCpuUtilization, Service, ServiceDescription, XRayExtension } from '../lib';
+import { AppMeshExtension, CloudwatchAgentExtension, Container, Environment, FireLensExtension, HttpLoadBalancerExtension, Service, ServiceDescription, XRayExtension } from '../lib';
 
 const app = new App();
 const stack = new Stack(app, 'aws-ecs-integ');
@@ -24,14 +24,16 @@ nameDescription.add(new AppMeshExtension({ mesh }));
 nameDescription.add(new FireLensExtension());
 nameDescription.add(new XRayExtension());
 nameDescription.add(new CloudwatchAgentExtension());
-nameDescription.add(new ScaleOnCpuUtilization({
-  initialTaskCount: 2,
-  minTaskCount: 2,
-}));
 
 const nameService = new Service(stack, 'name', {
   environment: environment,
   serviceDescription: nameDescription,
+  autoScaleTaskCount: {
+    maxTaskCount: 10,
+    minTaskCount: 2,
+    targetCpuUtilization: 75,
+  },
+  desiredCount: 2,
 });
 
 /** Greeting service */
@@ -49,14 +51,16 @@ greetingDescription.add(new AppMeshExtension({ mesh }));
 greetingDescription.add(new FireLensExtension());
 greetingDescription.add(new XRayExtension());
 greetingDescription.add(new CloudwatchAgentExtension());
-greetingDescription.add(new ScaleOnCpuUtilization({
-  initialTaskCount: 2,
-  minTaskCount: 2,
-}));
 
 const greetingService = new Service(stack, 'greeting', {
   environment: environment,
   serviceDescription: greetingDescription,
+  desiredCount: 2,
+  autoScaleTaskCount: {
+    minTaskCount: 2,
+    maxTaskCount: 10,
+    targetCpuUtilization: 75,
+  },
 });
 
 /** Greeter service */
@@ -77,14 +81,16 @@ greeterDescription.add(new FireLensExtension());
 greeterDescription.add(new XRayExtension());
 greeterDescription.add(new CloudwatchAgentExtension());
 greeterDescription.add(new HttpLoadBalancerExtension());
-greeterDescription.add(new ScaleOnCpuUtilization({
-  initialTaskCount: 2,
-  minTaskCount: 2,
-}));
 
 const greeterService = new Service(stack, 'greeter', {
   environment: environment,
   serviceDescription: greeterDescription,
+  desiredCount: 2,
+  autoScaleTaskCount: {
+    minTaskCount: 2,
+    maxTaskCount: 10,
+    targetCpuUtilization: 75,
+  },
 });
 
 greeterService.connectTo(nameService);
