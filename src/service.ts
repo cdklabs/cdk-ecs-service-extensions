@@ -130,7 +130,7 @@ export class Service extends Construct {
   public readonly scalableTaskCount?: ecs.ScalableTaskCount;
 
   /**
-   * The application target group.
+   * The application target group if the service has an HTTPLoadBalancerExtension.
    */
   public targetGroup?: ApplicationTargetGroup;
 
