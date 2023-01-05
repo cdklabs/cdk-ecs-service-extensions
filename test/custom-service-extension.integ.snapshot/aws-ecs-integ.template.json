@@ -394,16 +394,7 @@
   "productionenvironmentclusterC6599D2D": {
    "Type": "AWS::ECS::Cluster"
   },
-  "productionenvironmentclusterDefaultServiceDiscoveryNamespaceBE74D64D": {
-   "Type": "AWS::ServiceDiscovery::PrivateDnsNamespace",
-   "Properties": {
-    "Name": "production",
-    "Vpc": {
-     "Ref": "productionenvironmentvpcAEB47DF7"
-    }
-   }
-  },
-  "ServiceConnecttaskdefinitionTaskRole9F4C55FD": {
+  "nametaskdefinitionTaskRole50FE844E": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -420,12 +411,12 @@
     }
    }
   },
-  "ServiceConnecttaskdefinitionB19E0536": {
+  "nametaskdefinition690762BB": {
    "Type": "AWS::ECS::TaskDefinition",
    "Properties": {
     "ContainerDefinitions": [
      {
-      "Cpu": 256,
+      "Cpu": 1024,
       "Environment": [
        {
         "Name": "PORT",
@@ -434,13 +425,11 @@
       ],
       "Essential": true,
       "Image": "nathanpeck/name",
-      "Memory": 512,
+      "Memory": 2048,
       "Name": "app",
       "PortMappings": [
        {
-        "AppProtocol": "grpc",
         "ContainerPort": 80,
-        "Name": "name",
         "Protocol": "tcp"
        }
       ],
@@ -453,9 +442,9 @@
       ]
      }
     ],
-    "Cpu": "256",
-    "Family": "awsecsintegServiceConnecttaskdefinitionCE44FAD5",
-    "Memory": "512",
+    "Cpu": "1024",
+    "Family": "awsecsintegnametaskdefinition0EA6A1A0",
+    "Memory": "2048",
     "NetworkMode": "awsvpc",
     "RequiresCompatibilities": [
      "EC2",
@@ -463,13 +452,13 @@
     ],
     "TaskRoleArn": {
      "Fn::GetAtt": [
-      "ServiceConnecttaskdefinitionTaskRole9F4C55FD",
+      "nametaskdefinitionTaskRole50FE844E",
       "Arn"
      ]
     }
    }
   },
-  "ServiceConnectserviceService9DF17EC6": {
+  "nameserviceService8015C8D6": {
    "Type": "AWS::ECS::Service",
    "Properties": {
     "Cluster": {
@@ -479,7 +468,7 @@
      "MaximumPercent": 200,
      "MinimumHealthyPercent": 100
     },
-    "DesiredCount": 1,
+    "DesiredCount": 10,
     "EnableECSManagedTags": false,
     "LaunchType": "FARGATE",
     "NetworkConfiguration": {
@@ -488,7 +477,7 @@
       "SecurityGroups": [
        {
         "Fn::GetAtt": [
-         "ServiceConnectserviceSecurityGroup0D1FCAE3",
+         "nameserviceSecurityGroup33F4662C",
          "GroupId"
         ]
        }
@@ -503,30 +492,15 @@
       ]
      }
     },
-    "ServiceConnectConfiguration": {
-     "Enabled": true,
-     "Namespace": "production",
-     "Services": [
-      {
-       "ClientAliases": [
-        {
-         "DnsName": "name",
-         "Port": 1000
-        }
-       ],
-       "PortName": "name"
-      }
-     ]
-    },
     "TaskDefinition": {
-     "Ref": "ServiceConnecttaskdefinitionB19E0536"
+     "Ref": "nametaskdefinition690762BB"
     }
    }
   },
-  "ServiceConnectserviceSecurityGroup0D1FCAE3": {
+  "nameserviceSecurityGroup33F4662C": {
    "Type": "AWS::EC2::SecurityGroup",
    "Properties": {
-    "GroupDescription": "aws-ecs-integ/ServiceConnect-service/SecurityGroup",
+    "GroupDescription": "aws-ecs-integ/name-service/SecurityGroup",
     "SecurityGroupEgress": [
      {
       "CidrIp": "0.0.0.0/0",
@@ -536,6 +510,67 @@
     ],
     "VpcId": {
      "Ref": "productionenvironmentvpcAEB47DF7"
+    }
+   }
+  },
+  "nameserviceTaskCountTarget366C2B3A": {
+   "Type": "AWS::ApplicationAutoScaling::ScalableTarget",
+   "Properties": {
+    "MaxCapacity": 20,
+    "MinCapacity": 5,
+    "ResourceId": {
+     "Fn::Join": [
+      "",
+      [
+       "service/",
+       {
+        "Ref": "productionenvironmentclusterC6599D2D"
+       },
+       "/",
+       {
+        "Fn::GetAtt": [
+         "nameserviceService8015C8D6",
+         "Name"
+        ]
+       }
+      ]
+     ]
+    },
+    "RoleARN": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":iam::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService"
+      ]
+     ]
+    },
+    "ScalableDimension": "ecs:service:DesiredCount",
+    "ServiceNamespace": "ecs"
+   }
+  },
+  "nameserviceTaskCountTargetTargetCpuUtilization50E2840097": {
+   "Type": "AWS::ApplicationAutoScaling::ScalingPolicy",
+   "Properties": {
+    "PolicyName": "awsecsintegnameserviceTaskCountTargetTargetCpuUtilization508522EB56",
+    "PolicyType": "TargetTrackingScaling",
+    "ScalingTargetId": {
+     "Ref": "nameserviceTaskCountTarget366C2B3A"
+    },
+    "TargetTrackingScalingPolicyConfiguration": {
+     "PredefinedMetricSpecification": {
+      "PredefinedMetricType": "ECSServiceAverageCPUUtilization"
+     },
+     "ScaleInCooldown": 60,
+     "ScaleOutCooldown": 60,
+     "TargetValue": 50
     }
    }
   }
