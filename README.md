@@ -220,6 +220,35 @@ const nameService = new Service(this, 'name', {
   taskRole,
 });
 ```
+## Accessing targetGroup
+
+HttpLoadBalancerExtension should expose targetGroup as a member.
+Exposing targetGroup as an optional property on the Service construct:
+
+```ts
+const environment = new Environment(stack, 'production');
+const serviceDescription = new ServiceDescription();
+
+serviceDescription.add(new Container({
+  cpu: 256,
+  memoryMiB: 512,
+  trafficPort: 80,
+  image: ecs.ContainerImage.fromRegistry('nathanpeck/name'),
+}));
+
+serviceDescription.add(new HttpLoadBalancerExtension({ requestsPerTarget: 100 }));
+
+const service = new Service(stack, 'my-service', {
+  environment,
+  serviceDescription,
+  autoScaleTaskCount: {
+    maxTaskCount: 5,
+  },
+});
+
+// Access target group. 
+service.targetGroup;
+```
 
 ## Task Auto-Scaling
 
