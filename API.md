@@ -552,6 +552,7 @@ Any object.
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC where this service should be placed. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.property.scalableTaskCount">scalableTaskCount</a></code> | <code>aws-cdk-lib.aws_ecs.ScalableTaskCount</code> | The scalable attribute representing task count. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.property.ecsService">ecsService</a></code> | <code>aws-cdk-lib.aws_ecs.Ec2Service \| aws-cdk-lib.aws_ecs.FargateService</code> | The underlying ECS service that was created. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.property.targetGroup">targetGroup</a></code> | <code>aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationTargetGroup</code> | The application target group if the service has an HTTPLoadBalancerExtension. |
 
 ---
 
@@ -664,6 +665,18 @@ public readonly ecsService: Ec2Service | FargateService;
 - *Type:* aws-cdk-lib.aws_ecs.Ec2Service | aws-cdk-lib.aws_ecs.FargateService
 
 The underlying ECS service that was created.
+
+---
+
+##### `targetGroup`<sup>Optional</sup> <a name="targetGroup" id="@aws-cdk-containers/ecs-service-extensions.Service.property.targetGroup"></a>
+
+```typescript
+public readonly targetGroup: ApplicationTargetGroup;
+```
+
+- *Type:* aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationTargetGroup
+
+The application target group if the service has an HTTPLoadBalancerExtension.
 
 ---
 

@@ -220,6 +220,24 @@ const nameService = new Service(this, 'name', {
   taskRole,
 });
 ```
+## Configure Custom Health Check
+
+When you add an HTTPLoadBalancerExtension, you can customize the health checks by accessing the targetGroup field on the service.
+
+```ts
+const service = new Service(stack, 'my-service', {
+  environment,
+  serviceDescription,
+  autoScaleTaskCount: {
+    maxTaskCount: 5,
+  },
+});
+  
+service.targetGroup.configureHealthCheck({
+  path: '/',
+  port: '80',
+});
+```
 
 ## Task Auto-Scaling
 

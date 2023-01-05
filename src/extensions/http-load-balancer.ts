@@ -65,6 +65,7 @@ export class HttpLoadBalancerExtension extends ServiceExtension {
       port: 80,
       targets: [service],
     });
+    this.parentService.targetGroup = targetGroup;
 
     if (this.requestsPerTarget) {
       if (!this.parentService.scalableTaskCount) {
@@ -72,7 +73,7 @@ export class HttpLoadBalancerExtension extends ServiceExtension {
       }
       this.parentService.scalableTaskCount.scaleOnRequestCount(`${this.parentService.id}-target-request-count-${this.requestsPerTarget}`, {
         requestsPerTarget: this.requestsPerTarget,
-        targetGroup,
+        targetGroup: this.parentService.targetGroup,
       });
       this.parentService.enableAutoScalingPolicy();
     }
