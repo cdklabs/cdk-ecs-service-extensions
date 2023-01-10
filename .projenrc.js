@@ -39,6 +39,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     mavenArtifactId: 'cdk-ecs-service-extensions',
     mavenEndpoint: 'https://s01.oss.sonatype.org',
   },
+  
+  publishToGo: {
+    moduleName: 'github.com/cdklabs/cdk-ecs-service-extensions-go',
+  },
 
   autoApproveOptions: {
     allowedUsernames: ['cdklabs-automation'],
