@@ -1,13 +1,4 @@
 # CDK Construct library for building ECS services
-<!--BEGIN STABILITY BANNER-->
-
----
-
-![cdk-constructs: Experimental](https://img.shields.io/badge/cdk--constructs-experimental-important.svg?style=for-the-badge)
-
----
-
-<!--END STABILITY BANNER-->
 
 This library provides a high level, extensible pattern for constructing services
 deployed using Amazon ECS.
