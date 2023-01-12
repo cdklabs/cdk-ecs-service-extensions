@@ -2,9 +2,9 @@ import { Stack, RemovalPolicy } from 'aws-cdk-lib';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as awslogs from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
-import { Service } from '../service';
 import { Container } from './container';
 import { ContainerMutatingHook, ServiceExtension } from './extension-interfaces';
+import { Service } from '../service';
 
 /**
  * Settings for the hook which mutates the application container
