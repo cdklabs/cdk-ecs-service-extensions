@@ -1,8 +1,8 @@
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
-import { Service } from '../service';
 import { ServiceExtension } from './extension-interfaces';
+import { Service } from '../service';
 
 const CLOUDWATCH_AGENT_IMAGE = 'amazon/cloudwatch-agent:latest';
 

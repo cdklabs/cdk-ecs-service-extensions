@@ -2,8 +2,8 @@ import { RemovalPolicy } from 'aws-cdk-lib';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as awslogs from 'aws-cdk-lib/aws-logs';
 import * as cxapi from 'aws-cdk-lib/cx-api';
-import { Service } from '../service';
 import { ServiceExtension } from './extension-interfaces';
+import { Service } from '../service';
 
 // keep this import separate from other imports to reduce chance for merge conflicts with v2-main
 // eslint-disable-next-line no-duplicate-imports, import/order
