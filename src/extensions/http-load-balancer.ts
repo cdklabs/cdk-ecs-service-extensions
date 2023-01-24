@@ -3,8 +3,8 @@ import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as alb from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { Construct } from 'constructs';
-import { Service } from '../service';
 import { ServiceExtension, ServiceBuild } from './extension-interfaces';
+import { Service } from '../service';
 
 export interface HttpLoadBalancerProps {
   /**
