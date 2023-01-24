@@ -1,8 +1,8 @@
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import { Construct } from 'constructs';
+import { Service } from '../service';
 import { Container } from './container';
 import { ContainerMutatingHook, ServiceBuild, ServiceExtension } from './extension-interfaces';
-import { Service } from '../service';
 
 
 /**

@@ -2,10 +2,10 @@ import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import { Construct } from 'constructs';
-import { TaskRecordManager } from './task-record-manager';
 import { Service } from '../../service';
 import { Container } from '../container';
 import { ServiceExtension, ServiceBuild, EnvironmentCapacityType } from '../extension-interfaces';
+import { TaskRecordManager } from './task-record-manager';
 
 export interface AssignPublicIpExtensionOptions {
   /**

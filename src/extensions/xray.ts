@@ -2,8 +2,8 @@ import { Duration, Stack } from 'aws-cdk-lib';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
-import { ServiceExtension } from './extension-interfaces';
 import { Service } from '../service';
+import { ServiceExtension } from './extension-interfaces';
 
 const XRAY_DAEMON_IMAGE = 'amazon/aws-xray-daemon:latest';
 
