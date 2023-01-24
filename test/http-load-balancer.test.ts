@@ -1,5 +1,6 @@
 import { Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import { Container, Environment, HttpLoadBalancerExtension, Service, ServiceDescription } from '../lib';
 
@@ -137,5 +138,57 @@ describe('http load balancer', () => {
         serviceDescription,
       });
     }).toThrow(/Auto scaling target for the service 'my-service' hasn't been configured. Please use Service construct to configure 'minTaskCount' and 'maxTaskCount'./);
+  });
+
+  test('should create HTTP listener and redirect if certificate specified', () => {
+    // GIVEN
+    const stack = new Stack();
+
+    // WHEN
+    const environment = new Environment(stack, 'production');
+    const serviceDescription = new ServiceDescription();
+
+    serviceDescription.add(new Container({
+      cpu: 256,
+      memoryMiB: 512,
+      trafficPort: 80,
+      image: ecs.ContainerImage.fromRegistry('nathanpeck/name'),
+    }));
+    const certificate = acm.Certificate.fromCertificateArn(
+      stack,
+      'importedCert',
+      'arn:aws:acm:us-west-2:1234567:certificate/ABC123',
+    );
+    serviceDescription.add(new HttpLoadBalancerExtension({ certificate }));
+
+    new Service(stack, 'my-service', {
+      environment,
+      serviceDescription,
+      desiredCount: 2,
+    });
+
+    // THEN
+    Template.fromStack(stack).hasResourceProperties('AWS::ElasticLoadBalancingV2::Listener', {
+      Port: 443,
+      Certificates: [
+        { CertificateArn: 'arn:aws:acm:us-west-2:1234567:certificate/ABC123' },
+      ],
+      Protocol: 'HTTPS',
+    });
+
+    Template.fromStack(stack).hasResourceProperties('AWS::ElasticLoadBalancingV2::Listener', {
+      Port: 80,
+      Protocol: 'HTTP',
+      DefaultActions: [
+        {
+          RedirectConfig: {
+            Port: '443',
+            Protocol: 'HTTPS',
+            StatusCode: 'HTTP_301',
+          },
+          Type: 'redirect',
+        },
+      ],
+    });
   });
 });
