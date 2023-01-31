@@ -62,11 +62,11 @@ class QueueHandler:
         running_task_collector = RunningTaskCollector(ec2_client=self.ec2_client, reference_record=reference_record)
         stopped_tasks = []
         for message in decode_records(event):
-            if 'details' not in message:
+            if 'detail' not in message:
                 logging.info(f'Received a non-task state message {message}')
                 continue
 
-            task_description = message['details']
+            task_description = message['detail']
 
             group = task_description['group']
             if group != f'service:{self.service_name}':
