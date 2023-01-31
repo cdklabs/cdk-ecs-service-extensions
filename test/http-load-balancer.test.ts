@@ -87,7 +87,7 @@ describe('http load balancer', () => {
 
     serviceDescription.add(new HttpLoadBalancerExtension({ requestsPerTarget: 100 }));
 
-    new Service(stack, 'my-service', {
+    const service = new Service(stack, 'my-service', {
       environment,
       serviceDescription,
       autoScaleTaskCount: {
@@ -96,6 +96,7 @@ describe('http load balancer', () => {
     });
 
     // THEN
+    expect(service.targetGroup).not.toBeUndefined();
     Template.fromStack(stack).hasResourceProperties('AWS::ApplicationAutoScaling::ScalableTarget', {
       MaxCapacity: 5,
       MinCapacity: 1,

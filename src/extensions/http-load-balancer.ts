@@ -2,8 +2,8 @@ import { CfnOutput, Duration } from 'aws-cdk-lib';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as alb from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { Construct } from 'constructs';
-import { Service } from '../service';
 import { ServiceExtension, ServiceBuild } from './extension-interfaces';
+import { Service } from '../service';
 
 export interface HttpLoadBalancerProps {
   /**
@@ -65,6 +65,7 @@ export class HttpLoadBalancerExtension extends ServiceExtension {
       port: 80,
       targets: [service],
     });
+    this.parentService.targetGroup = targetGroup;
 
     if (this.requestsPerTarget) {
       if (!this.parentService.scalableTaskCount) {
@@ -72,7 +73,7 @@ export class HttpLoadBalancerExtension extends ServiceExtension {
       }
       this.parentService.scalableTaskCount.scaleOnRequestCount(`${this.parentService.id}-target-request-count-${this.requestsPerTarget}`, {
         requestsPerTarget: this.requestsPerTarget,
-        targetGroup,
+        targetGroup: this.parentService.targetGroup,
       });
       this.parentService.enableAutoScalingPolicy();
     }

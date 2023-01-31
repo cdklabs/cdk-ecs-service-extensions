@@ -1,9 +1,9 @@
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as sns from 'aws-cdk-lib/aws-sns';
 import { Construct } from 'constructs';
-import { Service } from '../service';
 import { Container } from './container';
 import { ContainerMutatingHook, ServiceExtension } from './extension-interfaces';
+import { Service } from '../service';
 
 /**
  * An interface that will be implemented by all the resources that can be published events or written data to.
