@@ -11,9 +11,9 @@
     "@jridgewell/trace-mapping" "^0.3.9"
 
 "@aws-cdk/asset-awscli-v1@^2.2.9":
-  version "2.2.64"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-awscli-v1/-/asset-awscli-v1-2.2.64.tgz#b4b7a119c64dabb616d56372c90ce78604c0cc16"
-  integrity sha512-2N6bLz//iKv0W8ZBRHIVdbsHXR7mV3yY12ImF5g3lzJRq6i/ZY5Uz19Y1eHGWz2f/+bZqDKHAJOlXqimqJZ1Uw==
+  version "2.2.65"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-awscli-v1/-/asset-awscli-v1-2.2.65.tgz#c8b9b63b8cd2655db41effb41133ec477e1f216a"
+  integrity sha512-5T1YHBPJHr6YVpk2D4ibS6HEmhYiPtMFt/nnEizzJ6CUoxBhuYdj1hVPEZfKma5o+Wn/CWppisvGGQNTpk8J9A==
 
 "@aws-cdk/asset-kubectl-v20@^2.1.1":
   version "2.1.1"
@@ -21,9 +21,9 @@
   integrity sha512-U1ntiX8XiMRRRH5J1IdC+1t5CE89015cwyt5U63Cpk0GnMlN5+h9WsWMlKlPXZR4rdq/m806JRlBMRpBUB2Dhw==
 
 "@aws-cdk/asset-node-proxy-agent-v5@^2.0.15":
-  version "2.0.53"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-node-proxy-agent-v5/-/asset-node-proxy-agent-v5-2.0.53.tgz#e7dcba05d833cf5e718c31f2867ef48040207cfa"
-  integrity sha512-gDNdL+Lf2oBhYOr61ovO/QV+Hw2WzSGuKoz+O7Dc56DAF9OiTTc5DZA4la6FUcLPIamlVwxVdASqWXJZfRf64A==
+  version "2.0.54"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-node-proxy-agent-v5/-/asset-node-proxy-agent-v5-2.0.54.tgz#0af94662da997cd96c162acc3a0f5977f380c959"
+  integrity sha512-vmarVZ+LCeIFnvTVevfO1REJ/Wl6FGxR16mp3Yj5+xAWTrSymZe+UhAsmFQURSb15qDYnDj00jK2bYLiIvtGvw==
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.18.6":
   version "7.18.6"
@@ -5119,10 +5119,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@0.67.49:
-  version "0.67.49"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.67.49.tgz#ee0608f393aec57cf0d29faffd945007e84b6fec"
-  integrity sha512-0kkJC5c8FWA36cryUnZ568ApBeQC9X0EP0QI4joh59yXohgOgOzk243A5sFEVWmq9FTz0dvLhtivJ3sJH57uRw==
+projen@0.67.50:
+  version "0.67.50"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.67.50.tgz#6516d18e1ead4d05bbe59327868bef121e346a42"
+  integrity sha512-Ok791Wg5rxqkq2UMEx4jNKu1ic6H51MvfHuF5cZxlT4HyCsz38tTCTBx6kclmSWjibFMI/ttboSe1eHsS0PJIw==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
