@@ -11,9 +11,9 @@
     "@jridgewell/trace-mapping" "^0.3.9"
 
 "@aws-cdk/asset-awscli-v1@^2.2.9":
-  version "2.2.139"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-awscli-v1/-/asset-awscli-v1-2.2.139.tgz#4236502e21e96153734c3faad6e09693c89ec865"
-  integrity sha512-PGRtKbDfI8BmLEik4awqe/u02GKhpdyYvgI6XWGvSyn2qx+f4rVmyLqM2wiFI8wFWFt6YBAQaegKJS1cEZVe2A==
+  version "2.2.140"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-awscli-v1/-/asset-awscli-v1-2.2.140.tgz#bfba1811ac083a6cc85d19c914b75a890c6db15b"
+  integrity sha512-WipYHhlU/zPSs/5TNCT38GvrE3U9opuSdtQsnnD+OXPt4hv7ISXH3Lui6A16GpnhBehWrlc4r5/83vlrNT7g4A==
 
 "@aws-cdk/asset-kubectl-v20@^2.1.1":
   version "2.1.1"
@@ -21,9 +21,9 @@
   integrity sha512-U1ntiX8XiMRRRH5J1IdC+1t5CE89015cwyt5U63Cpk0GnMlN5+h9WsWMlKlPXZR4rdq/m806JRlBMRpBUB2Dhw==
 
 "@aws-cdk/asset-node-proxy-agent-v5@^2.0.15":
-  version "2.0.115"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-node-proxy-agent-v5/-/asset-node-proxy-agent-v5-2.0.115.tgz#e95a73089b7ba637cf2e20f2d073076f01298fc0"
-  integrity sha512-MJ5/tMBOo6m7Bazs5TqEijIZNo4DH9NOAuv6mXjFT9k1yNAdOAr0imzG9L3uk2JpSmKrGRDSPRkrJFOszNtSaw==
+  version "2.0.116"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/asset-node-proxy-agent-v5/-/asset-node-proxy-agent-v5-2.0.116.tgz#d2509c63cf99875cc7aa8699607ac320e4aa9c02"
+  integrity sha512-tCMC4FumKCp9EgqHEht2uvO1Hi/Qt6R2NqlWNF/rpby1ti/1fDC4avzVL7C+dsbYp/B02YZnH7SdV0EMhxXUog==
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.18.6", "@babel/code-frame@^7.21.4":
   version "7.21.4"
@@ -1751,9 +1751,9 @@ combined-stream@^1.0.8:
     delayed-stream "~1.0.0"
 
 commander@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-10.0.0.tgz#71797971162cd3cf65f0b9d24eb28f8d303acdf1"
-  integrity sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-10.0.1.tgz#881ee46b4f77d1c1dccc5823433aa39b022cbe06"
+  integrity sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==
 
 comment-json@4.2.2:
   version "4.2.2"
@@ -5204,10 +5204,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@0.71.7:
-  version "0.71.7"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.7.tgz#46f59a6d10bf3a865631b4f927f9915abce618d9"
-  integrity sha512-pkOPyYWKA2X5lg7n2IXM36PMcHz9Vts1r9Z/rna7D4ep4mjg1xwbESIEGtbX1W03OMwkQrnPpvLZbc0JnTMC4g==
+projen@0.71.9:
+  version "0.71.9"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.71.9.tgz#da732db618a3890ab933086c81c3193492c87a6e"
+  integrity sha512-iUFEus6eTHg91fG6A1ABTN0rvgYspkfhY1SBKYfP2A0bIYN5NNC4F++5TADmfWTSYAu4UbqL7Nyx5feUFnsuCA==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
@@ -5222,7 +5222,6 @@ projen@0.71.7:
     xmlbuilder2 "^2.4.1"
     yaml "2.0.0"
     yargs "^16.2.0"
-    zlib "^1.0.5"
 
 promise-inflight@^1.0.1:
   version "1.0.1"
@@ -6334,9 +6333,9 @@ untildify@^4.0.0:
   integrity sha512-KK8xQ1mkzZeg9inewmFVDNkg3l5LUhoq9kN6iWYB/CC9YMG8HA+c1Q8HwDe6dEX7kErrEVNVBO3fWsVq5iDgtw==
 
 update-browserslist-db@^1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.0.10.tgz#0f54b876545726f17d00cd9a2561e6dade943ff3"
-  integrity sha512-OztqDenkfFkbSG+tRxBeAnCVPckDBcvibKd35yDONx6OU8N7sqgwc7rCbkJ/WcYtVRZ4ba68d6byhC21GFh7sQ==
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.0.11.tgz#9a2a641ad2907ae7b3616506f4b977851db5b940"
+  integrity sha512-dCwEFf0/oT85M1fHBg4F0jtLwJrutGoHSQXCh7u4o2t1drG+c0a9Flnqww6XUKSfQMPpJBRjU8d4RXB09qtvaA==
   dependencies:
     escalade "^3.1.1"
     picocolors "^1.0.0"
@@ -6664,8 +6663,3 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
-
-zlib@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/zlib/-/zlib-1.0.5.tgz#6e7c972fc371c645a6afb03ab14769def114fcc0"
-  integrity sha512-40fpE2II+Cd3k8HWTWONfeKE2jL+P42iWJ1zzps5W51qcTsOUKM5Q5m2PFb0CLxlmFAaUuUdJGc3OfZy947v0w==
