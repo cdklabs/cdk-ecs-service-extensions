@@ -10,9 +10,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
   description: 'The CDK Construct Library that helps you build ECS services using simple extensions',
   name: 'cdklabs/cdk-ecs-service-extensions',
   repositoryUrl: 'https://github.com/cdklabs/cdk-ecs-service-extensions.git',
-  stability: 'experimental',
+  stability: 'stable',
   majorVersion: 2,
-  prerelease: 'alpha',
 
   peerDeps: [
     'aws-cdk-lib',

@@ -1,9 +1,10 @@
 # CDK Construct library for building ECS services
+
 <!--BEGIN STABILITY BANNER-->
 
 ---
 
-![cdk-constructs: Experimental](https://img.shields.io/badge/cdk--constructs-experimental-important.svg?style=for-the-badge)
+![cdk-constructs: Stable](https://img.shields.io/badge/cdk--constructs-stable-success.svg?style=for-the-badge)
 
 ---
 
