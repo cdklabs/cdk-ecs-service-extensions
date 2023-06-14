@@ -1,4 +1,4 @@
-const { awscdk } = require('projen');
+import { awscdk } from 'projen';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   packageName: '@aws-cdk-containers/ecs-service-extensions',
@@ -9,6 +9,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   description: 'The CDK Construct Library that helps you build ECS services using simple extensions',
   name: 'cdklabs/cdk-ecs-service-extensions',
+  projenrcTs: true,
   repositoryUrl: 'https://github.com/cdklabs/cdk-ecs-service-extensions.git',
   stability: 'experimental',
   majorVersion: 2,
