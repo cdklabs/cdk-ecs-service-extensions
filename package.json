@@ -93,7 +93,7 @@
     "jsii-docgen": "^6.3.27",
     "jsii-pacmak": "^1.84.0",
     "npm-check-updates": "^16",
-    "projen": "0.71.101",
+    "projen": "0.71.103",
     "standard-version": "^9",
     "ts-jest": "^27",
     "ts-node": "^10.9.1",
