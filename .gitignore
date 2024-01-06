@@ -31,7 +31,6 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .cache
-!/.projenrc.js
 /test-reports/
 junit.xml
 /coverage/
@@ -108,3 +107,4 @@ test/publish-subscribe.integ.snapshot/manifest.json
 test/publish-subscribe.integ.snapshot/**/manifest.json
 test/publish-subscribe.integ.snapshot/tree.json
 test/publish-subscribe.integ.snapshot/**/tree.json
+!/.projenrc.ts
