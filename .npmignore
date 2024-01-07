@@ -31,3 +31,4 @@ test/multiple-environments.integ.snapshot
 test/.tmp
 test/publish-subscribe.integ.snapshot
 /.gitattributes
+/.projenrc.ts
