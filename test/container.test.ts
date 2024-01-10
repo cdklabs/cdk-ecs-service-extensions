@@ -7,7 +7,7 @@ import * as iam from 'aws-cdk-lib/aws-iam';
 import * as awslogs from 'aws-cdk-lib/aws-logs';
 import * as secrets from 'aws-cdk-lib/aws-secretsmanager';
 import * as cxapi from 'aws-cdk-lib/cx-api';
-import { Container, Environment, EnvironmentCapacityType, FireLensExtension, Service, ServiceDescription } from '../lib';
+import { Container, Environment, EnvironmentCapacityType, FireLensExtension, Service, ServiceDescription } from '../src';
 
 describe('container', () => {
   test('should be able to add a container to the service', () => {

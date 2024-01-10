@@ -1,7 +1,7 @@
 import { Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { AliasedPortExtension, Container, Environment, ServiceDescription, Service } from '../lib';
+import { AliasedPortExtension, Container, Environment, ServiceDescription, Service } from '../src';
 
 describe('aliased port', () => {
   let stack: Stack;

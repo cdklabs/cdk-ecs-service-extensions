@@ -2,7 +2,7 @@ import { App, Duration, Stack } from 'aws-cdk-lib';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as sns from 'aws-cdk-lib/aws-sns';
 import * as sqs from 'aws-cdk-lib/aws-sqs';
-import { Container, Environment, InjecterExtension, InjectableTopic, QueueExtension, Service, ServiceDescription, TopicSubscription } from '../lib';
+import { Container, Environment, InjecterExtension, InjectableTopic, QueueExtension, Service, ServiceDescription, TopicSubscription } from '../src';
 
 
 const app = new App();

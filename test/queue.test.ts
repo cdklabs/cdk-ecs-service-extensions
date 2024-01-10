@@ -3,7 +3,7 @@ import { Template } from 'aws-cdk-lib/assertions';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as sns from 'aws-cdk-lib/aws-sns';
 import * as sqs from 'aws-cdk-lib/aws-sqs';
-import { Container, Environment, QueueExtension, Service, ServiceDescription, TopicSubscription } from '../lib';
+import { Container, Environment, QueueExtension, Service, ServiceDescription, TopicSubscription } from '../src';
 
 describe('queue', () => {
   test('should only create a default queue when no input props are provided', () => {

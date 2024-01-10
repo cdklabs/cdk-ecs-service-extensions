@@ -1,7 +1,7 @@
 import { Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { CloudwatchAgentExtension, Container, Environment, Service, ServiceDescription } from '../lib';
+import { CloudwatchAgentExtension, Container, Environment, Service, ServiceDescription } from '../src';
 
 describe('cloudwatch agent', () => {
   test('should be able to add AWS X-Ray to a service', () => {

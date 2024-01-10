@@ -1,6 +1,6 @@
 import { App, Duration, Stack } from 'aws-cdk-lib';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { Container, Environment, Service, ServiceBuild, ServiceDescription, ServiceExtension } from '../lib';
+import { Container, Environment, Service, ServiceBuild, ServiceDescription, ServiceExtension } from '../src';
 
 class MyCustomAutoscaling extends ServiceExtension {
   constructor() {

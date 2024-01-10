@@ -2,7 +2,7 @@ import { Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as sns from 'aws-cdk-lib/aws-sns';
-import { Container, Environment, InjecterExtension, InjectableTopic, Service, ServiceDescription } from '../lib';
+import { Container, Environment, InjecterExtension, InjectableTopic, Service, ServiceDescription } from '../src';
 
 describe('injecter', () => {
   test('correctly sets publish permissions for given topics', () => {

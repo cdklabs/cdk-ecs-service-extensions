@@ -1,7 +1,7 @@
 import { Stack } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { Container, Environment, FireLensExtension, Service, ServiceDescription } from '../lib';
+import { Container, Environment, FireLensExtension, Service, ServiceDescription } from '../src';
 
 describe('firelens', () => {
   test('should be able to add Firelens to a service', () => {

@@ -1,6 +1,6 @@
 import { App, Stack } from 'aws-cdk-lib';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { AliasedPortExtension, Container, Environment, EnvironmentCapacityType, Service, ServiceDescription } from '../lib';
+import { AliasedPortExtension, Container, Environment, EnvironmentCapacityType, Service, ServiceDescription } from '../src';
 
 const app = new App();
 const stack = new Stack(app, 'aws-ecs-integ');

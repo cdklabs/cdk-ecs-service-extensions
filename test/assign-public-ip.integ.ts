@@ -3,7 +3,7 @@ import { App, CfnOutput, Fn, Stack } from 'aws-cdk-lib';
 import { SubnetType, Vpc } from 'aws-cdk-lib/aws-ec2';
 import { ContainerImage } from 'aws-cdk-lib/aws-ecs';
 import { CnameRecord, PublicHostedZone } from 'aws-cdk-lib/aws-route53';
-import { AssignPublicIpExtension, Container, Environment, Service, ServiceDescription } from '../lib';
+import { AssignPublicIpExtension, Container, Environment, Service, ServiceDescription } from '../src';
 
 // Record name. You can change this and redeploy this integration test to see
 // what happens when the record name changes.

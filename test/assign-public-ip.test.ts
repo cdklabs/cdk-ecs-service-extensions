@@ -4,8 +4,8 @@ import * as autoscaling from 'aws-cdk-lib/aws-autoscaling';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as route53 from 'aws-cdk-lib/aws-route53';
-import { AssignPublicIpExtension, Container, Environment, EnvironmentCapacityType, Service, ServiceDescription } from '../lib';
-import { TaskRecordManager } from '../lib/extensions/assign-public-ip/task-record-manager';
+import { AssignPublicIpExtension, Container, Environment, EnvironmentCapacityType, Service, ServiceDescription } from '../src';
+import { TaskRecordManager } from '../src/extensions/assign-public-ip/task-record-manager';
 
 describe('assign public ip', () => {
   test('should assign a public ip to fargate tasks', () => {

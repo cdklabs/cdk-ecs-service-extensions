@@ -1,7 +1,7 @@
 import { Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { Container, Environment, HttpLoadBalancerExtension, Service, ServiceDescription } from '../lib';
+import { Container, Environment, HttpLoadBalancerExtension, Service, ServiceDescription } from '../src';
 
 describe('http load balancer', () => {
   test('should be able to add an HTTP load balancer to a service', () => {

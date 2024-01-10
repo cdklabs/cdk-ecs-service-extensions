@@ -1,7 +1,7 @@
 import { App, Stack } from 'aws-cdk-lib';
 import { Mesh } from 'aws-cdk-lib/aws-appmesh';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { Container, Environment, Service, ServiceDescription, AppMeshExtension } from '../lib';
+import { Container, Environment, Service, ServiceDescription, AppMeshExtension } from '../src';
 
 const app = new App();
 const stack = new Stack(app, 'aws-ecs-integ');

@@ -10,7 +10,7 @@ import {
   HttpLoadBalancerExtension,
   Service,
   ServiceDescription,
-} from '../lib';
+} from '../src';
 
 class ResourceStack extends NestedStack {
   public readonly clusterName: string;

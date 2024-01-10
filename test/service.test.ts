@@ -1,7 +1,7 @@
 import { Stack } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { Container, Environment, Service, ServiceDescription } from '../lib';
+import { Container, Environment, Service, ServiceDescription } from '../src';
 
 describe('service', () => {
   test('should error if a service is prepared with no addons', () => {

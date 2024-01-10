@@ -2,7 +2,7 @@ import { Stack } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 import * as appmesh from 'aws-cdk-lib/aws-appmesh';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { AppMeshExtension, Container, Environment, ServiceDescription, Service } from '../lib';
+import { AppMeshExtension, Container, Environment, ServiceDescription, Service } from '../src';
 
 describe('appmesh', () => {
   test('should be able to add AWS App Mesh to a service', () => {

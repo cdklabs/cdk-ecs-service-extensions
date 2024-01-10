@@ -1,7 +1,7 @@
 import { App, Stack } from 'aws-cdk-lib';
 import { Mesh } from 'aws-cdk-lib/aws-appmesh';
 import { ContainerImage } from 'aws-cdk-lib/aws-ecs';
-import { AppMeshExtension, CloudwatchAgentExtension, Container, Environment, FireLensExtension, HttpLoadBalancerExtension, Service, ServiceDescription, XRayExtension } from '../lib';
+import { AppMeshExtension, CloudwatchAgentExtension, Container, Environment, FireLensExtension, HttpLoadBalancerExtension, Service, ServiceDescription, XRayExtension } from '../src';
 
 const app = new App();
 const stack = new Stack(app, 'aws-ecs-integ');

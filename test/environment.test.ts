@@ -3,7 +3,7 @@ import { Template } from 'aws-cdk-lib/assertions';
 import * as autoscaling from 'aws-cdk-lib/aws-autoscaling';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
-import { Container, Environment, EnvironmentCapacityType, Service, ServiceDescription } from '../lib';
+import { Container, Environment, EnvironmentCapacityType, Service, ServiceDescription } from '../src';
 
 describe('environment', () => {
   test('should be able to add a service to an environment', () => {
