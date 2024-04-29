@@ -32,3 +32,4 @@ test/.tmp
 test/publish-subscribe.integ.snapshot
 /.gitattributes
 /.projenrc.ts
+/projenrc
