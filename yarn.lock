@@ -1179,9 +1179,9 @@ aws-cdk-lib@2.52.0:
     yaml "1.10.2"
 
 aws-cdk@^2:
-  version "2.152.0"
-  resolved "https://registry.yarnpkg.com/aws-cdk/-/aws-cdk-2.152.0.tgz#efc1d1a89e31a5764efb4d61976758f8f15538c6"
-  integrity sha512-Cvmy8bKbn5EwUs9H+p4lR4UfbWDBBU9YTCoXziLzGnPL8i/I56wz92sX/awpTxDY9YocERdps0mXo8q0mu/Mvg==
+  version "2.153.0"
+  resolved "https://registry.yarnpkg.com/aws-cdk/-/aws-cdk-2.153.0.tgz#79112076cdf7953dbc52bffcd66e32bfed907468"
+  integrity sha512-cBP+K9/BH0VpkNkm61c/1UCdY7MCUXxRTEUYT1TNDSR9rJQPseaeKWNwtt31KxvT6xbgoskh0NTOpy7t+bqWUw==
   optionalDependencies:
     fsevents "2.3.2"
 
@@ -1922,9 +1922,9 @@ dotgitignore@^2.1.0:
     minimatch "^3.0.4"
 
 electron-to-chromium@^1.5.4:
-  version "1.5.11"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.11.tgz#258077f1077a1c72f2925cd5b326c470a7f5adef"
-  integrity sha512-R1CccCDYqndR25CaXFd6hp/u9RaaMcftMkphmvuepXr5b1vfLkRml6aWVeBhXJ7rbevHkKEMJtz8XqPf7ffmew==
+  version "1.5.12"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.12.tgz#ee31756eaa2e06f2aa606f170b7ad06dd402b4e4"
+  integrity sha512-tIhPkdlEoCL1Y+PToq3zRNehUaKp3wBX/sr7aclAWdIWjvqAe/Im/H0SiCM4c1Q8BLPHCdoJTol+ZblflydehA==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -4673,9 +4673,9 @@ spdx-expression-parse@^3.0.0:
     spdx-license-ids "^3.0.0"
 
 spdx-license-ids@^3.0.0:
-  version "3.0.18"
-  resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.18.tgz#22aa922dcf2f2885a6494a261f2d8b75345d0326"
-  integrity sha512-xxRs31BqRYHwiMzudOrpSiHtZ8i/GeionCBDSilhYRj+9gIcI8wCZTlXZKu9vZIVqViP3dcp9qE5G6AlIaD+TQ==
+  version "3.0.20"
+  resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.20.tgz#e44ed19ed318dd1e5888f93325cee800f0f51b89"
+  integrity sha512-jg25NiDV/1fLtSgEgyvVyDunvaNHbuwF9lfNV17gSmPFAlYzdfNBlLtLzXTevwkPj7DhGbmN9VnmJIgLnhvaBw==
 
 spdx-license-list@^6.9.0:
   version "6.9.0"
