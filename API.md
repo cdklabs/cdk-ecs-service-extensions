@@ -24,7 +24,7 @@ new Environment(scope: Construct, id: string, props?: EnvironmentProps)
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Environment.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#@aws-cdk-containers/ecs-service-extensions.Environment.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.Environment.Initializer.parameter.id">id</a></code> | <code>string</code> | The name of this environment. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Environment.Initializer.parameter.props">props</a></code> | <code><a href="#@aws-cdk-containers/ecs-service-extensions.EnvironmentProps">EnvironmentProps</a></code> | *No description.* |
 
 ---
@@ -38,6 +38,8 @@ new Environment(scope: Construct, id: string, props?: EnvironmentProps)
 ##### `id`<sup>Required</sup> <a name="id" id="@aws-cdk-containers/ecs-service-extensions.Environment.Initializer.parameter.id"></a>
 
 - *Type:* string
+
+The name of this environment.
 
 ---
 
@@ -223,7 +225,7 @@ new ImportedEnvironment(scope: Construct, id: string, props: EnvironmentAttribut
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.Initializer.parameter.id">id</a></code> | <code>string</code> | The name of this environment. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.Initializer.parameter.props">props</a></code> | <code><a href="#@aws-cdk-containers/ecs-service-extensions.EnvironmentAttributes">EnvironmentAttributes</a></code> | *No description.* |
 
 ---
@@ -237,6 +239,8 @@ new ImportedEnvironment(scope: Construct, id: string, props: EnvironmentAttribut
 ##### `id`<sup>Required</sup> <a name="id" id="@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.Initializer.parameter.id"></a>
 
 - *Type:* string
+
+The name of this environment.
 
 ---
 
