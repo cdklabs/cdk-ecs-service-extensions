@@ -1,4 +1,5 @@
 import { CfnOutput, Duration } from 'aws-cdk-lib';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as alb from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { Construct } from 'constructs';
@@ -10,6 +11,14 @@ export interface HttpLoadBalancerProps {
    * The number of ALB requests per target.
    */
   readonly requestsPerTarget?: number;
+
+  /**
+   * An ACM certificate to associate with this load balancer. If specified, this
+   * extension will listen over HTTPS on port 443.
+   *
+   * @default - undefined. The load balancer will listen on port 80 over HTTP.
+   */
+  readonly certificate?: acm.ICertificate;
 }
 /**
  * This extension add a public facing load balancer for sending traffic
@@ -19,10 +28,12 @@ export class HttpLoadBalancerExtension extends ServiceExtension {
   private loadBalancer!: alb.IApplicationLoadBalancer;
   private listener!: alb.IApplicationListener;
   private requestsPerTarget?: number;
+  private certificate?: acm.ICertificate;
 
   constructor(props: HttpLoadBalancerProps = {}) {
     super('load-balancer');
     this.requestsPerTarget = props.requestsPerTarget;
+    this.certificate = props.certificate;
   }
 
   // Before the service is created, go ahead and create the load balancer itself.
@@ -33,11 +44,27 @@ export class HttpLoadBalancerExtension extends ServiceExtension {
       vpc: this.parentService.vpc,
       internetFacing: true,
     });
-
+    const protocol = this.certificate ? alb.ApplicationProtocol.HTTPS : alb.ApplicationProtocol.HTTP;
+    const port = this.certificate ? 443 : 80;
     this.listener = this.loadBalancer.addListener(`${this.parentService.id}-listener`, {
-      port: 80,
+      port,
+      protocol,
       open: true,
     });
+
+    if (this.certificate) {
+      this.listener.addCertificates('cert', [alb.ListenerCertificate.fromCertificateManager(this.certificate)]);
+      this.loadBalancer.addListener(`${this.parentService.id}-redirect-listener`, {
+        protocol: alb.ApplicationProtocol.HTTP,
+        port: 80,
+        open: true,
+        defaultAction: alb.ListenerAction.redirect({
+          port: '443',
+          protocol: alb.ApplicationProtocol.HTTPS,
+          permanent: true,
+        }),
+      });
+    }
 
     // Automatically create an output
     new CfnOutput(scope, `${this.parentService.id}-load-balancer-dns-output`, {
