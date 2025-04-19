@@ -300,7 +300,7 @@ export class Service extends Construct {
 
       if (props.autoScaleTaskCount.targetCpuUtilization) {
         const targetCpuUtilizationPercent = props.autoScaleTaskCount.targetCpuUtilization;
-        this.scalableTaskCount.scaleOnCpuUtilization(`${this.id}-target-cpu-utilization-${targetCpuUtilizationPercent}`, {
+        this.scalableTaskCount.scaleOnCpuUtilization(`${this.id}-target-cpu-utilization`, {
           targetUtilizationPercent: targetCpuUtilizationPercent,
         });
         this.enableAutoScalingPolicy();
@@ -308,7 +308,7 @@ export class Service extends Construct {
 
       if (props.autoScaleTaskCount.targetMemoryUtilization) {
         const targetMemoryUtilizationPercent = props.autoScaleTaskCount.targetMemoryUtilization;
-        this.scalableTaskCount.scaleOnMemoryUtilization(`${this.id}-target-memory-utilization-${targetMemoryUtilizationPercent}`, {
+        this.scalableTaskCount.scaleOnMemoryUtilization(`${this.id}-target-memory-utilization`, {
           targetUtilizationPercent: targetMemoryUtilizationPercent,
         });
         this.enableAutoScalingPolicy();
