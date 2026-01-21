@@ -1144,10 +1144,10 @@
     "ServiceNamespace": "ecs"
    }
   },
-  "nameserviceTaskCountTargetnametargetcpuutilization7563967136": {
+  "nameserviceTaskCountTargetnametargetcpuutilizationE96CCFF9": {
    "Type": "AWS::ApplicationAutoScaling::ScalingPolicy",
    "Properties": {
-    "PolicyName": "awsecsintegnameserviceTaskCountTargetnametargetcpuutilization75712936D5",
+    "PolicyName": "awsecsintegnameserviceTaskCountTargetnametargetcpuutilization1D7AB0F5",
     "PolicyType": "TargetTrackingScaling",
     "ScalingTargetId": {
      "Ref": "nameserviceTaskCountTarget366C2B3A"
@@ -2011,10 +2011,10 @@
     "ServiceNamespace": "ecs"
    }
   },
-  "greetingserviceTaskCountTargetgreetingtargetcpuutilization75C3DB1631": {
+  "greetingserviceTaskCountTargetgreetingtargetcpuutilization5B62F564": {
    "Type": "AWS::ApplicationAutoScaling::ScalingPolicy",
    "Properties": {
-    "PolicyName": "awsecsinteggreetingserviceTaskCountTargetgreetingtargetcpuutilization75DDF9387C",
+    "PolicyName": "awsecsinteggreetingserviceTaskCountTargetgreetingtargetcpuutilization825D652B",
     "PolicyType": "TargetTrackingScaling",
     "ScalingTargetId": {
      "Ref": "greetingserviceTaskCountTargetA036048C"
@@ -3013,10 +3013,10 @@
     "ServiceNamespace": "ecs"
    }
   },
-  "greeterserviceTaskCountTargetgreetertargetcpuutilization756DE876F3": {
+  "greeterserviceTaskCountTargetgreetertargetcpuutilizationB67AFAC4": {
    "Type": "AWS::ApplicationAutoScaling::ScalingPolicy",
    "Properties": {
-    "PolicyName": "awsecsinteggreeterserviceTaskCountTargetgreetertargetcpuutilization7544518009",
+    "PolicyName": "awsecsinteggreeterserviceTaskCountTargetgreetertargetcpuutilization0CAD6037",
     "PolicyType": "TargetTrackingScaling",
     "ScalingTargetId": {
      "Ref": "greeterserviceTaskCountTargetAB95B3D0"
