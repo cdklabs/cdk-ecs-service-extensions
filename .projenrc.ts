@@ -1,6 +1,7 @@
-import { awscdk } from 'projen';
+import { CdklabsConstructLibrary } from 'cdklabs-projen-project-types';
+import { javascript } from 'projen';
 
-const project = new awscdk.AwsCdkConstructLibrary({
+const project = new CdklabsConstructLibrary({
   packageName: '@aws-cdk-containers/ecs-service-extensions',
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
@@ -14,6 +15,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   stability: 'experimental',
   majorVersion: 2,
   prerelease: 'alpha',
+  private: false,
 
   peerDeps: [
     'aws-cdk-lib',
@@ -49,16 +51,14 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['cdklabs-automation'],
     secret: 'GITHUB_TOKEN',
   },
-  // releaseWorkflowSetupSteps: [{
-  //   name: 'Set up Docker Buildx',
-  //   id: 'buildx',
-  //   uses: 'docker/setup-buildx-action@v1',
-  //   with: {
-  //     install: true,
-  //   },
-  // }],
 
   autoApproveUpgrades: true,
+  setNodeEngineVersion: false,
+  npmAccess: javascript.NpmAccess.RESTRICTED,
+
+  rosettaOptions: {
+    strict: false,
+  },
 });
 
 project.synth();
