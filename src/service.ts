@@ -55,6 +55,13 @@ export interface ServiceProps {
    * @default none
    */
   readonly autoScaleTaskCount?: AutoScalingOptions;
+
+  /**
+   * Circuit breaker configuration for the service.
+   *
+   * @default - No circuit breaker configured
+   */
+  readonly circuitBreaker?: ecs.DeploymentCircuitBreaker;
 }
 
 export interface AutoScalingOptions {
@@ -231,6 +238,7 @@ export class Service extends Construct {
       taskDefinition: this.taskDefinition,
       minHealthyPercent: 100,
       maxHealthyPercent: 200,
+      circuitBreaker: props.circuitBreaker,
       desiredCount: props.desiredCount ?? 1,
     } as ServiceBuild;
 
