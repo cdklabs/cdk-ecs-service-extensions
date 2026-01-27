@@ -39,7 +39,6 @@ junit.xml
 /dist/version.txt
 !/.github/workflows/release.yml
 !/.mergify.yml
-!/.github/workflows/upgrade-main.yml
 !/.github/pull_request_template.md
 !/test/
 !/tsconfig.dev.json
@@ -107,4 +106,10 @@ test/publish-subscribe.integ.snapshot/manifest.json
 test/publish-subscribe.integ.snapshot/**/manifest.json
 test/publish-subscribe.integ.snapshot/tree.json
 test/publish-subscribe.integ.snapshot/**/tree.json
+.jsii.tabl.json
+!/rosetta/default.ts-fixture
+!/.github/workflows/retry-automerge.yml
+!/.github/workflows/upgrade-cdklabs-projen-project-types-main.yml
+!/.github/workflows/upgrade-main.yml
+!/.github/workflows/upgrade-dev-deps-main.yml
 !/.projenrc.ts
