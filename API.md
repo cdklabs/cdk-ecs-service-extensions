@@ -1456,7 +1456,24 @@ const httpLoadBalancerProps: HttpLoadBalancerProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.HttpLoadBalancerProps.property.certificate">certificate</a></code> | <code>aws-cdk-lib.aws_certificatemanager.ICertificate</code> | An ACM certificate to associate with this load balancer. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.HttpLoadBalancerProps.property.requestsPerTarget">requestsPerTarget</a></code> | <code>number</code> | The number of ALB requests per target. |
+
+---
+
+##### `certificate`<sup>Optional</sup> <a name="certificate" id="@aws-cdk-containers/ecs-service-extensions.HttpLoadBalancerProps.property.certificate"></a>
+
+```typescript
+public readonly certificate: ICertificate;
+```
+
+- *Type:* aws-cdk-lib.aws_certificatemanager.ICertificate
+- *Default:* undefined. The load balancer will listen on port 80 over HTTP.
+
+An ACM certificate to associate with this load balancer.
+
+If specified, this
+extension will listen over HTTPS on port 443.
 
 ---
 
