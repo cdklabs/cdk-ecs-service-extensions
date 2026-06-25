@@ -28,7 +28,27 @@ aliasedPortServiceDescription.add(new AliasedPortExtension({
 }));
 
 new Service(stack, 'ServiceConnect', {
-  environment: environment,
+  environment,
   serviceDescription: aliasedPortServiceDescription,
   desiredCount: 1,
+});
+
+const otherDescription = new ServiceDescription();
+
+otherDescription.add(new Container({
+  cpu: 256,
+  memoryMiB: 512,
+  trafficPort: 80,
+  image: ecs.ContainerImage.fromRegistry('nathanpeck/greeter'),
+  environment: {
+    PORT: '80',
+    URL: 'http://name',
+  },
+}));
+
+new Service(stack, 'ClientService', {
+  environment,
+  serviceDescription: otherDescription,
+  desiredCount: 1,
+  enableServiceConnect: true,
 });

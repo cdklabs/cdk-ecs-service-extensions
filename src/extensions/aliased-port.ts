@@ -1,4 +1,5 @@
 import * as ecs from 'aws-cdk-lib/aws-ecs';
+import * as cloudmap from 'aws-cdk-lib/aws-servicediscovery';
 import { Construct } from 'constructs';
 import { Container } from './container';
 import { ContainerMutatingHook, ServiceBuild, ServiceExtension } from './extension-interfaces';
@@ -6,7 +7,7 @@ import { Service } from '../service';
 
 
 /**
- * AliasedPortProps defines the properties of an aliased port extension
+ * AliasedPortProps defines the properties of an aliased port extension.
  */
 export interface AliasedPortProps {
   /**
@@ -30,11 +31,24 @@ export interface AliasedPortProps {
   readonly aliasPort?: number;
 }
 
+/**
+ * AliasedPortExtension allows services to opt in to Amazon ECS Service Connect using a terse DNS alias,
+ * an optional protocol, and a port over which the service will receive Service Connect traffic.
+ *
+ * @example
+ *
+ * declare const description: ServiceDescription;
+ * description.add(new AliasedPortExtension({
+ *   alias: 'backend-api',
+ *   appProtocol: ecs.AppProtocol.grpc,
+ *   aliasPort: 80,
+ * }));
+ */
 export class AliasedPortExtension extends ServiceExtension {
   protected alias: string;
   protected aliasPort?: number;
   protected appProtocol?: ecs.AppProtocol;
-  protected namespace?: string;
+  protected namespace?: cloudmap.INamespace;
 
   constructor(props: AliasedPortProps) {
     super('aliasedPort');
@@ -49,12 +63,12 @@ export class AliasedPortExtension extends ServiceExtension {
     this.scope = scope;
 
     // If there isn't a default cloudmap namespace on the cluster, create a private HTTP namespace for SC.
-    if (!this.parentService.cluster.defaultCloudMapNamespace) {
+    if (!this.parentService.environment.cluster.defaultCloudMapNamespace) {
       this.parentService.environment.addDefaultCloudMapNamespace({
         name: this.parentService.environment.id,
       });
     }
-    this.namespace = this.parentService.environment.cluster.defaultCloudMapNamespace?.namespaceName;
+    this.namespace = this.parentService.environment.cluster.defaultCloudMapNamespace as cloudmap.INamespace;
   }
 
   public addHooks(): void {
@@ -71,7 +85,7 @@ export class AliasedPortExtension extends ServiceExtension {
   }
 
   public modifyServiceProps(props: ServiceBuild): ServiceBuild {
-    if (props.serviceConnectConfiguration && props.serviceConnectConfiguration.namespace !== this.namespace) {
+    if (props.serviceConnectConfiguration && props.serviceConnectConfiguration.namespace !== this.namespace?.namespaceName) {
       throw new Error('Service connect cannot be enabled with two different namespaces.');
     }
 
@@ -117,6 +131,13 @@ export class AliasedPortExtension extends ServiceExtension {
         services,
       },
     };
+  }
+
+  public useService(service: ecs.Ec2Service | ecs.FargateService): void {
+    if (!this.namespace) {
+      throw new Error('Environment must have a default Cloudmap namespace to enable Service Connect.');
+    }
+    service.node.addDependency(this.namespace);
   }
 }
 

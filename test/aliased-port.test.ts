@@ -117,4 +117,65 @@ describe('aliased port', () => {
       },
     });
   });
+
+  test('when enabling service connect on a client service', () => {
+    serviceDescription.add(new Container({
+      cpu: 256,
+      memoryMiB: 512,
+      trafficPort: 80,
+      image: ecs.ContainerImage.fromRegistry('nathanpeck/name'),
+    }));
+
+    environment.addDefaultCloudMapNamespace({
+      name: environment.id,
+    });
+
+    const svc = new Service(stack, 'my-service', {
+      environment,
+      serviceDescription,
+    });
+    svc.enableServiceConnect();
+
+    Template.fromStack(stack).hasResourceProperties('AWS::ECS::Service', {
+      ServiceConnectConfiguration: {
+        Enabled: true,
+        Namespace: 'production',
+      },
+    });
+  });
+
+  test('cannot enable service connect on a cluster with no namespace', () => {
+    serviceDescription.add(new Container({
+      cpu: 256,
+      memoryMiB: 512,
+      trafficPort: 80,
+      image: ecs.ContainerImage.fromRegistry('nathanpeck/name'),
+    }));
+    const svc = new Service(stack, 'my-service', {
+      environment,
+      serviceDescription,
+    });
+
+    expect(() => {
+      svc.enableServiceConnect();
+    }).toThrow('Environment must have a default CloudMap namespace to enable Service Connect.');
+  });
+
+  test('cannot add two Aliased Port extensions', () => {
+    serviceDescription.add(new Container({
+      cpu: 256,
+      memoryMiB: 512,
+      trafficPort: 80,
+      image: ecs.ContainerImage.fromRegistry('nathanpeck/name'),
+    }));
+    serviceDescription.add(new AliasedPortExtension({
+      alias: 'name',
+    }));
+    expect(() => {
+      serviceDescription.add(new AliasedPortExtension({
+        alias: 'name2',
+        aliasPort: 8080,
+      }));
+    }).toThrow('An extension called aliasedPort has already been added');
+  });
 });
