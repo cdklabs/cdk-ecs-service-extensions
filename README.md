@@ -580,6 +580,51 @@ new Service(this, 'Worker', {
 });
 ```
 
+## Aliased Port Extension
+[Amazon ECS Service Connect](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html#service-connect-concepts) is a simple-to-use managed service mesh offering. It involves the creation of a CloudMap Namespace in a service's environment, then the creation of one or more Service Connect Services which route traffic to any named port mapping on the service's task definition.
+
+The following example adds an `AliasedPortExtension` to a Service, allowing other services which have opted in to Service Connect to reach it through its terse DNS alias.
+
+```ts
+const environment = new Environment(this, 'production');
+
+const serverDescription = new ServiceDescription() ;
+serverDescription.add(new Container({
+  cpu: 256,
+  memoryMiB: 512,
+  trafficPort: 80,
+  image: ecs.ContainerImage.fromRegistry('nathanpeck/name'),
+}));
+serverDescription.add(new AliasedPortExtension({
+  alias: 'server',
+}));
+
+new Service(this, 'Server', {
+  environment,
+  serviceDescription: serverDescription
+});
+
+const clientDescription = new ServiceDescription();
+clientDescription.add(new Container({
+  cpu: 256,
+  memoryMiB: 512,
+  trafficPort: 80,
+  image: ecs.ContainerImage.fromRegistry('nathanpeck/greeter'),
+  environment: {
+    PORT: '80',
+    NAME_URL: 'http://server'
+  },
+}));
+
+const clientService = new Service(this, 'client', {
+  environment,
+  serviceDescription: clientDescription,
+});
+clientService.enableServiceConnect();
+```
+
+In the example above, the `server` service advertises its port `80` via a terse DNS alias `server`. The client opts in to ECS Service Connect and uses the short URL and port to access the server service. The `AliasedPortExtension` creates the necessary named port mapping on the Task Definition, adds a default CloudMap namespace to the environment, and registers the Service Connect Service under the container's `alias` and `trafficPort`.
+
 ## Community Extensions
 
 We encourage the development of Community Service Extensions that support

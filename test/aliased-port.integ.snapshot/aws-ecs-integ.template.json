@@ -521,7 +521,10 @@
     "TaskDefinition": {
      "Ref": "ServiceConnecttaskdefinitionB19E0536"
     }
-   }
+   },
+   "DependsOn": [
+    "productionenvironmentclusterDefaultServiceDiscoveryNamespaceBE74D64D"
+   ]
   },
   "ServiceConnectserviceSecurityGroup0D1FCAE3": {
    "Type": "AWS::EC2::SecurityGroup",
@@ -537,7 +540,143 @@
     "VpcId": {
      "Ref": "productionenvironmentvpcAEB47DF7"
     }
+   },
+   "DependsOn": [
+    "productionenvironmentclusterDefaultServiceDiscoveryNamespaceBE74D64D"
+   ]
+  },
+  "ClientServicetaskdefinitionTaskRoleACC19FE3": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
    }
+  },
+  "ClientServicetaskdefinition89718CF4": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "Cpu": 256,
+      "Environment": [
+       {
+        "Name": "PORT",
+        "Value": "80"
+       },
+       {
+        "Name": "URL",
+        "Value": "http://name"
+       }
+      ],
+      "Essential": true,
+      "Image": "nathanpeck/greeter",
+      "Memory": 512,
+      "Name": "app",
+      "PortMappings": [
+       {
+        "ContainerPort": 80,
+        "Protocol": "tcp"
+       }
+      ],
+      "Ulimits": [
+       {
+        "HardLimit": 1024000,
+        "Name": "nofile",
+        "SoftLimit": 1024000
+       }
+      ]
+     }
+    ],
+    "Cpu": "256",
+    "Family": "awsecsintegClientServicetaskdefinition11AA48A8",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "EC2",
+     "FARGATE"
+    ],
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "ClientServicetaskdefinitionTaskRoleACC19FE3",
+      "Arn"
+     ]
+    }
+   }
+  },
+  "ClientServiceserviceService8F3E675C": {
+   "Type": "AWS::ECS::Service",
+   "Properties": {
+    "Cluster": {
+     "Ref": "productionenvironmentclusterC6599D2D"
+    },
+    "DeploymentConfiguration": {
+     "MaximumPercent": 200,
+     "MinimumHealthyPercent": 100
+    },
+    "DesiredCount": 1,
+    "EnableECSManagedTags": false,
+    "LaunchType": "FARGATE",
+    "NetworkConfiguration": {
+     "AwsvpcConfiguration": {
+      "AssignPublicIp": "DISABLED",
+      "SecurityGroups": [
+       {
+        "Fn::GetAtt": [
+         "ClientServiceserviceSecurityGroupFBB92787",
+         "GroupId"
+        ]
+       }
+      ],
+      "Subnets": [
+       {
+        "Ref": "productionenvironmentvpcPrivateSubnet1Subnet53F632E6"
+       },
+       {
+        "Ref": "productionenvironmentvpcPrivateSubnet2Subnet756FB93C"
+       }
+      ]
+     }
+    },
+    "ServiceConnectConfiguration": {
+     "Enabled": true,
+     "Namespace": "production"
+    },
+    "TaskDefinition": {
+     "Ref": "ClientServicetaskdefinition89718CF4"
+    }
+   },
+   "DependsOn": [
+    "productionenvironmentclusterDefaultServiceDiscoveryNamespaceBE74D64D"
+   ]
+  },
+  "ClientServiceserviceSecurityGroupFBB92787": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "aws-ecs-integ/ClientService-service/SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "productionenvironmentvpcAEB47DF7"
+    }
+   },
+   "DependsOn": [
+    "productionenvironmentclusterDefaultServiceDiscoveryNamespaceBE74D64D"
+   ]
   }
  },
  "Parameters": {

@@ -458,6 +458,7 @@ new Service(scope: Construct, id: string, props: ServiceProps)
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.addURL">addURL</a></code> | This method adds a new URL for the service. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.connectTo">connectTo</a></code> | Tell extensions from one service to connect to extensions from another sevice if they have implemented a hook for it. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.enableAutoScalingPolicy">enableAutoScalingPolicy</a></code> | This helper method is used to set the `autoScalingPoliciesEnabled` attribute whenever an auto scaling policy is configured for the service. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.enableServiceConnect">enableServiceConnect</a></code> | This method allows a service to opt in to ECS Service Connect as a client. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.getURL">getURL</a></code> | Retrieve a URL for the service. |
 
 ---
@@ -525,6 +526,17 @@ public enableAutoScalingPolicy(): void
 ```
 
 This helper method is used to set the `autoScalingPoliciesEnabled` attribute whenever an auto scaling policy is configured for the service.
+
+##### `enableServiceConnect` <a name="enableServiceConnect" id="@aws-cdk-containers/ecs-service-extensions.Service.enableServiceConnect"></a>
+
+```typescript
+public enableServiceConnect(): void
+```
+
+This method allows a service to opt in to ECS Service Connect as a client.
+
+If this method is not called, the service will not be able to reach other
+Service Connect enabled services via their terse DNS aliases.
 
 ##### `getURL` <a name="getURL" id="@aws-cdk-containers/ecs-service-extensions.Service.getURL"></a>
 
@@ -1864,6 +1876,7 @@ const serviceProps: ServiceProps = { ... }
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.serviceDescription">serviceDescription</a></code> | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceDescription">ServiceDescription</a></code> | The ServiceDescription used to build the service. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.autoScaleTaskCount">autoScaleTaskCount</a></code> | <code><a href="#@aws-cdk-containers/ecs-service-extensions.AutoScalingOptions">AutoScalingOptions</a></code> | The options for configuring the auto scaling target. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.desiredCount">desiredCount</a></code> | <code>number</code> | The desired number of instantiations of the task definition to keep running on the service. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.enableServiceConnect">enableServiceConnect</a></code> | <code>boolean</code> | Whether to opt this service in to Service Connect as a client. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.taskRole">taskRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The name of the IAM role that grants containers in the task permission to call AWS APIs on your behalf. |
 
 ---
@@ -1915,6 +1928,19 @@ public readonly desiredCount: number;
 - *Default:* When creating the service, default is 1; when updating the service, default uses the current task number.
 
 The desired number of instantiations of the task definition to keep running on the service.
+
+---
+
+##### `enableServiceConnect`<sup>Optional</sup> <a name="enableServiceConnect" id="@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.enableServiceConnect"></a>
+
+```typescript
+public readonly enableServiceConnect: boolean;
+```
+
+- *Type:* boolean
+- *Default:* true if an AliasedPortExtension was added to the service description, otherwise false
+
+Whether to opt this service in to Service Connect as a client.
 
 ---
 
@@ -2044,6 +2070,20 @@ If not provided, the default `eventsQueue` will subscribe to the given topic.
 ## Classes <a name="Classes" id="Classes"></a>
 
 ### AliasedPortExtension <a name="AliasedPortExtension" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension"></a>
+
+AliasedPortExtension allows services to opt in to Amazon ECS Service Connect using a terse DNS alias, an optional protocol, and a port over which the service will receive Service Connect traffic.
+
+*Example*
+
+```typescript
+declare const description: ServiceDescription;
+description.add(new AliasedPortExtension({
+  alias: 'backend-api',
+  appProtocol: ecs.AppProtocol.grpc,
+  aliasPort: 80,
+}));
+```
+
 
 #### Initializers <a name="Initializers" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.Initializer"></a>
 
@@ -2211,8 +2251,6 @@ create any final resources which might depend on the service itself.
 ###### `service`<sup>Required</sup> <a name="service" id="@aws-cdk-containers/ecs-service-extensions.AliasedPortExtension.useService.parameter.service"></a>
 
 - *Type:* aws-cdk-lib.aws_ecs.Ec2Service | aws-cdk-lib.aws_ecs.FargateService
-
-The generated service.
 
 ---
 
