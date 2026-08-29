@@ -91,6 +91,13 @@ export interface ServiceBuild {
    * @default - 200
    */
   readonly maxHealthyPercent?: number;
+
+  /**
+   * Circuit breaker configuration for the service.
+   *
+   * @default - No circuit breaker configured
+   */
+  readonly circuitBreaker?: ecs.DeploymentCircuitBreaker;
 }
 
 /**
