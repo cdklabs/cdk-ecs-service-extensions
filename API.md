@@ -1715,6 +1715,7 @@ const serviceBuild: ServiceBuild = { ... }
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.cluster">cluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | The cluster in which to launch the service. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.taskDefinition">taskDefinition</a></code> | <code>aws-cdk-lib.aws_ecs.TaskDefinition</code> | The task definition registered to this service. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.assignPublicIp">assignPublicIp</a></code> | <code>boolean</code> | Specifies whether the task's elastic network interface receives a public IP address. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.circuitBreaker">circuitBreaker</a></code> | <code>aws-cdk-lib.aws_ecs.DeploymentCircuitBreaker</code> | Circuit breaker configuration for the service. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.cloudMapOptions">cloudMapOptions</a></code> | <code>aws-cdk-lib.aws_ecs.CloudMapOptions</code> | Configuration for how to register the service in service discovery. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.desiredCount">desiredCount</a></code> | <code>number</code> | How many tasks to run. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.healthCheckGracePeriod">healthCheckGracePeriod</a></code> | <code>aws-cdk-lib.Duration</code> | How long the healthcheck can fail during initial task startup before the task is considered unhealthy. |
@@ -1760,6 +1761,19 @@ public readonly assignPublicIp: boolean;
 Specifies whether the task's elastic network interface receives a public IP address.
 
 If true, each task will receive a public IP address.
+
+---
+
+##### `circuitBreaker`<sup>Optional</sup> <a name="circuitBreaker" id="@aws-cdk-containers/ecs-service-extensions.ServiceBuild.property.circuitBreaker"></a>
+
+```typescript
+public readonly circuitBreaker: DeploymentCircuitBreaker;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.DeploymentCircuitBreaker
+- *Default:* No circuit breaker configured
+
+Circuit breaker configuration for the service.
 
 ---
 
@@ -1863,6 +1877,7 @@ const serviceProps: ServiceProps = { ... }
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.environment">environment</a></code> | <code><a href="#@aws-cdk-containers/ecs-service-extensions.IEnvironment">IEnvironment</a></code> | The environment to launch the service in. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.serviceDescription">serviceDescription</a></code> | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceDescription">ServiceDescription</a></code> | The ServiceDescription used to build the service. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.autoScaleTaskCount">autoScaleTaskCount</a></code> | <code><a href="#@aws-cdk-containers/ecs-service-extensions.AutoScalingOptions">AutoScalingOptions</a></code> | The options for configuring the auto scaling target. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.circuitBreaker">circuitBreaker</a></code> | <code>aws-cdk-lib.aws_ecs.DeploymentCircuitBreaker</code> | Circuit breaker configuration for the service. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.desiredCount">desiredCount</a></code> | <code>number</code> | The desired number of instantiations of the task definition to keep running on the service. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.taskRole">taskRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The name of the IAM role that grants containers in the task permission to call AWS APIs on your behalf. |
 
@@ -1902,6 +1917,19 @@ public readonly autoScaleTaskCount: AutoScalingOptions;
 - *Default:* none
 
 The options for configuring the auto scaling target.
+
+---
+
+##### `circuitBreaker`<sup>Optional</sup> <a name="circuitBreaker" id="@aws-cdk-containers/ecs-service-extensions.ServiceProps.property.circuitBreaker"></a>
+
+```typescript
+public readonly circuitBreaker: DeploymentCircuitBreaker;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.DeploymentCircuitBreaker
+- *Default:* No circuit breaker configured
+
+Circuit breaker configuration for the service.
 
 ---
 
