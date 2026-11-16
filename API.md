@@ -54,6 +54,7 @@ The name of this environment.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Environment.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.Environment.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Environment.addDefaultCloudMapNamespace">addDefaultCloudMapNamespace</a></code> | Add a default cloudmap namespace to the environment's cluster. |
 
 ---
@@ -65,6 +66,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@aws-cdk-containers/ecs-service-extensions.Environment.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@aws-cdk-containers/ecs-service-extensions.Environment.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addDefaultCloudMapNamespace` <a name="addDefaultCloudMapNamespace" id="@aws-cdk-containers/ecs-service-extensions.Environment.addDefaultCloudMapNamespace"></a>
 
@@ -269,6 +291,7 @@ The name of this environment.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.addDefaultCloudMapNamespace">addDefaultCloudMapNamespace</a></code> | Adding a default cloudmap namespace to the cluster will throw an error, as we don't own it. |
 
 ---
@@ -280,6 +303,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addDefaultCloudMapNamespace` <a name="addDefaultCloudMapNamespace" id="@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.addDefaultCloudMapNamespace"></a>
 
@@ -455,6 +499,7 @@ new Service(scope: Construct, id: string, props: ServiceProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.addURL">addURL</a></code> | This method adds a new URL for the service. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.connectTo">connectTo</a></code> | Tell extensions from one service to connect to extensions from another sevice if they have implemented a hook for it. |
 | <code><a href="#@aws-cdk-containers/ecs-service-extensions.Service.enableAutoScalingPolicy">enableAutoScalingPolicy</a></code> | This helper method is used to set the `autoScalingPoliciesEnabled` attribute whenever an auto scaling policy is configured for the service. |
@@ -469,6 +514,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@aws-cdk-containers/ecs-service-extensions.Service.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@aws-cdk-containers/ecs-service-extensions.Service.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addURL` <a name="addURL" id="@aws-cdk-containers/ecs-service-extensions.Service.addURL"></a>
 
