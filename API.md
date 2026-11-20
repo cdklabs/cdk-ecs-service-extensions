@@ -4,7 +4,7 @@
 
 ### Environment <a name="Environment" id="@aws-cdk-containers/ecs-service-extensions.Environment"></a>
 
-- *Implements:* <a href="#@aws-cdk-containers/ecs-service-extensions.IEnvironment">IEnvironment</a>
+- *Implements:* constructs.IConstruct, constructs.IDependable, <a href="#@aws-cdk-containers/ecs-service-extensions.IEnvironment">IEnvironment</a>
 
 An environment into which to deploy a service.
 
@@ -248,7 +248,7 @@ The VPC where environment services should be placed.
 
 ### ImportedEnvironment <a name="ImportedEnvironment" id="@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment"></a>
 
-- *Implements:* <a href="#@aws-cdk-containers/ecs-service-extensions.IEnvironment">IEnvironment</a>
+- *Implements:* constructs.IConstruct, constructs.IDependable, <a href="#@aws-cdk-containers/ecs-service-extensions.IEnvironment">IEnvironment</a>
 
 #### Initializers <a name="Initializers" id="@aws-cdk-containers/ecs-service-extensions.ImportedEnvironment.Initializer"></a>
 
@@ -453,6 +453,8 @@ The VPC into which environment services should be placed.
 
 
 ### Service <a name="Service" id="@aws-cdk-containers/ecs-service-extensions.Service"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable
 
 This Service construct serves as a Builder class for an ECS service.
 
@@ -3919,7 +3921,7 @@ connected to the service.
 
 ### InjectableTopic <a name="InjectableTopic" id="@aws-cdk-containers/ecs-service-extensions.InjectableTopic"></a>
 
-- *Implements:* <a href="#@aws-cdk-containers/ecs-service-extensions.IGrantInjectable">IGrantInjectable</a>
+- *Implements:* <a href="#@aws-cdk-containers/ecs-service-extensions.IGrantInjectable">IGrantInjectable</a>, <a href="#@aws-cdk-containers/ecs-service-extensions.IInjectable">IInjectable</a>
 
 The `InjectableTopic` class represents SNS Topic resource that can be published events to by the parent service.
 
