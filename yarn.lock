@@ -352,12 +352,12 @@
 
 "@dsherret/path@^0.3.4":
   version "0.3.4"
-  resolved "https://registry.npmjs.org/@dsherret/path/-/path-0.3.4.tgz#aa351b24bd9850b6bbc43ca05847f6a7b4468d04"
+  resolved "https://registry.yarnpkg.com/@dsherret/path/-/path-0.3.4.tgz#aa351b24bd9850b6bbc43ca05847f6a7b4468d04"
   integrity sha512-eQ4QXKedvwYFUeLhGSjDzJVuwaTlGNQzZ5S0n9YdRRc9TSRbx5BSNNPzVz+sJUKlm/69zpg7XfckukJz4JiKEQ==
 
 "@dsherret/shell@^0.7.2":
   version "0.7.3"
-  resolved "https://registry.npmjs.org/@dsherret/shell/-/shell-0.7.3.tgz#667ab5b796c55fd2402979802b8c61c992cb1424"
+  resolved "https://registry.yarnpkg.com/@dsherret/shell/-/shell-0.7.3.tgz#667ab5b796c55fd2402979802b8c61c992cb1424"
   integrity sha512-hcNlFuxR6hmKbS3fH3Wjgqtcynrt2wz04Di4QcVVkfegEnx3I+yzMQDXjwP08isowTq+3EWjWK/YBhbkX/1HFw==
   dependencies:
     "@dsherret/path" "^0.3.4"
@@ -366,7 +366,7 @@
 
 "@dsherret/which@^0.8.0":
   version "0.8.0"
-  resolved "https://registry.npmjs.org/@dsherret/which/-/which-0.8.0.tgz#6bffd64528afbdf4e947a60deff5b6414716a32d"
+  resolved "https://registry.yarnpkg.com/@dsherret/which/-/which-0.8.0.tgz#6bffd64528afbdf4e947a60deff5b6414716a32d"
   integrity sha512-Fsb8WeKBVvgMcMb2AlDe8EUpCwtB9eXySFHFteo4nvusV23NHpuwtbYDFx/xoJBxSqkoHq8Wn3C1DX2vJR7hRQ==
 
 "@eslint-community/eslint-utils@^4.8.0", "@eslint-community/eslint-utils@^4.9.1":
@@ -1490,7 +1490,7 @@ case@1.6.3, case@^1.6.3:
 
 cdklabs-projen-project-types@^0.6.23:
   version "0.6.23"
-  resolved "https://registry.npmjs.org/cdklabs-projen-project-types/-/cdklabs-projen-project-types-0.6.23.tgz#aed1cb0847ec8f7b3a922e46f2ab977e839dbd7f"
+  resolved "https://registry.yarnpkg.com/cdklabs-projen-project-types/-/cdklabs-projen-project-types-0.6.23.tgz#aed1cb0847ec8f7b3a922e46f2ab977e839dbd7f"
   integrity sha512-7VBE7Xqe+r7qHsxw6Fw0JWp28FzkFFUlDiS8cdy4Z9BFYVjI2XC8zGSWY8T989H3+UsBHMq27lRvFlCYXtZpwg==
   dependencies:
     yaml "^2.9.1"
@@ -1633,7 +1633,7 @@ concat-map@0.0.1:
 
 console-static-text@^0.3.5:
   version "0.3.5"
-  resolved "https://registry.npmjs.org/console-static-text/-/console-static-text-0.3.5.tgz#a786e82c1b05607fa631582b7850d839517ec9a6"
+  resolved "https://registry.yarnpkg.com/console-static-text/-/console-static-text-0.3.5.tgz#a786e82c1b05607fa631582b7850d839517ec9a6"
   integrity sha512-/iyYUmmAGDUQXbDA3drgIUmOEi0FB2TxfmcFt24YhWQaEsaWh3Cf+30vdS4lhQTX2713EdxQljRqoETLkzPk3w==
 
 constructs@10.5.1:
@@ -1643,7 +1643,7 @@ constructs@10.5.1:
 
 constructs@^10.5.0:
   version "10.8.1"
-  resolved "https://registry.npmjs.org/constructs/-/constructs-10.8.1.tgz#83877700caa85fdfee9eacd16fd4be16393a7aa6"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.8.1.tgz#83877700caa85fdfee9eacd16fd4be16393a7aa6"
   integrity sha512-98yGXYyhePqPYh3cYu8nzBERmAhC0DONe3UD03okK0nehZ7hYP4wgZuf02a04+uOWxnTJ5Rpp5m0GRNpwyLGGA==
 
 conventional-changelog-config-spec@2.1.0, conventional-changelog-config-spec@^2.1.0:
@@ -1801,7 +1801,7 @@ date-format@^4.0.14:
 
 dax@^0.50.2:
   version "0.50.2"
-  resolved "https://registry.npmjs.org/dax/-/dax-0.50.2.tgz#8cc47372f0d58f26bbd523ae9ba8fc127f23d4c8"
+  resolved "https://registry.yarnpkg.com/dax/-/dax-0.50.2.tgz#8cc47372f0d58f26bbd523ae9ba8fc127f23d4c8"
   integrity sha512-I8dkTGtFAds0KLugSbI34CwBcrAfs0uchcm/RF/lC/T4Mg9W5/ceETZmxECfXoxyJostJSIhGsJ2vBB35zQJlw==
   dependencies:
     "@dsherret/path" "^0.3.4"
@@ -3462,14 +3462,7 @@ js-yaml@^3.13.1:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-js-yaml@^4.1.1:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.3.0.tgz#d1900572a7f7cf0b5f540c83673e60bad3436592"
-  integrity sha512-1td788aAnnZ5qs7V2QIRl1owjtYpbKt749Y3xauqQgwIIGF/xXWz1wMTEBx5O3LK3lXLVuqXPdPxj2BoFHaW9Q==
-  dependencies:
-    argparse "^2.0.1"
-
-js-yaml@^4.3.2:
+js-yaml@^4.1.1, js-yaml@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.3.2.tgz#8e44fb14a2643c59726bb15787b5f1512cb3d3fb"
   integrity sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==
@@ -4149,10 +4142,10 @@ pretty-format@^27.0.0, pretty-format@^27.5.1:
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
 
-projen@0.105.3:
-  version "0.105.3"
-  resolved "https://registry.npmjs.org/projen/-/projen-0.105.3.tgz#2f3c8204738ddf802e60ffc80526a9c69c78901b"
-  integrity sha512-z0yrBbl3MXNLIfiL1EhJAuermZn7A6eJsK3BOUN8x1ZDCtIizI+V+kcVy0vU9AIAYmKyH+0oGHkL97KPEgThVg==
+projen@0.105.6:
+  version "0.105.6"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.105.6.tgz#456ef6146f21b239411282f121a455ea829848ce"
+  integrity sha512-GChhH8h8xxNNfPKXlKJMhRiPpsJ9AyW4KYvQ21Z9R7VIKkvSU7SjaOz4X/qjq449sgwuXHWZoDAEQf0TgA9HNA==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
@@ -4181,7 +4174,7 @@ prompts@^2.0.1:
 
 properties-file@^5.0.7:
   version "5.0.7"
-  resolved "https://registry.npmjs.org/properties-file/-/properties-file-5.0.7.tgz#9e3ea91e9acc013120a477de76e92f9a948f7f28"
+  resolved "https://registry.yarnpkg.com/properties-file/-/properties-file-5.0.7.tgz#9e3ea91e9acc013120a477de76e92f9a948f7f28"
   integrity sha512-Hoae9SnNTJebHujv5gdOtb7stArj27GcKzWxerrQgjuHasE+VT7G10Q6rR2wRWTjaACkT4zRigAtqnkMOz9BIA==
 
 psl@^1.1.33:
@@ -4866,7 +4859,7 @@ unbox-primitive@^1.1.0:
 
 undici-types@^5.26:
   version "5.28.4"
-  resolved "https://registry.npmjs.org/undici-types/-/undici-types-5.28.4.tgz#501669b1af1f288a9cbc2e273811965c9178306d"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-5.28.4.tgz#501669b1af1f288a9cbc2e273811965c9178306d"
   integrity sha512-3OeMF5Lyowe8VW0skf5qaIE7Or3yS9LS7fvMUI0gg4YxpIBVg0L8BxCmROw2CcYhSkpR68Epz7CGc8MPj94Uww==
 
 undici-types@~5.26.4:
@@ -5147,12 +5140,7 @@ yaml@1.10.2:
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
   integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
 
-yaml@^2.2.2:
-  version "2.8.2"
-  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.8.2.tgz#5694f25eca0ce9c3e7a9d9e00ce0ddabbd9e35c5"
-  integrity sha512-mplynKqc1C2hTVYxd0PU2xQAc22TI1vShAYGksCCfxbn/dFwnHTNi1bvYsBTkhdUNtGIf5xNOg938rrSSYvS9A==
-
-yaml@^2.9.0, yaml@^2.9.1:
+yaml@^2.2.2, yaml@^2.9.0, yaml@^2.9.1:
   version "2.9.1"
   resolved "https://registry.npmjs.org/yaml/-/yaml-2.9.1.tgz#c16233fb31944e705cfefaff38795587f57588ce"
   integrity sha512-3NxN8+78OdzbT7C/WjGsyfPAtJaN3FNDsWxv7Y7mcDsT/oOmgW8BpyQQFFBnvZE3j9Y2Sdz1ULFLezL7Eb2yFw==
