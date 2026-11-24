@@ -21,6 +21,39 @@ describe('service', () => {
     }).toThrow(/Service 'my-service' must have a Container extension/);
   });
 
+  test('allows circuit breaker configuration', () => {
+    // GIVEN
+    const stack = new Stack();
+
+    // WHEN
+    const environment = new Environment(stack, 'production');
+    const serviceDescription = new ServiceDescription();
+    serviceDescription.add(new Container({
+      cpu: 256,
+      memoryMiB: 512,
+      trafficPort: 80,
+      image: ecs.ContainerImage.fromRegistry('nathanpeck/name'),
+    }));
+
+    new Service(stack, 'my-service', {
+      environment,
+      serviceDescription,
+      circuitBreaker: {
+        rollback: true,
+      },
+    });
+
+    // THEN
+    Template.fromStack(stack).hasResourceProperties('AWS::ECS::Service', {
+      DeploymentConfiguration: {
+        DeploymentCircuitBreaker: {
+          Enable: true,
+          Rollback: true,
+        },
+      },
+    });
+  });
+
   test('allows scaling on a target CPU utilization', () => {
     // GIVEN
     const stack = new Stack();
