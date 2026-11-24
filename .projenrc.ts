@@ -7,6 +7,10 @@ const project = new CdklabsConstructLibrary({
   authorAddress: 'https://aws.amazon.com',
   authorOrganization: true,
   cdkVersion: '2.52.0',
+  // projen >= 0.100 defaults constructs to ^10.5.1. constructs 10.5 adds `with()`,
+  // which aws-cdk-go < 2.239.0 does not resolve, so the Go package stops compiling.
+  // Keep constructs in line with cdkVersion until cdkVersion is raised to >= 2.239.0.
+  constructsVersion: '10.0.5',
   defaultReleaseBranch: 'main',
   description: 'The CDK Construct Library that helps you build ECS services using simple extensions',
   name: 'cdklabs/cdk-ecs-service-extensions',
